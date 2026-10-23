@@ -9,9 +9,9 @@ import { IMG } from "@/data/images";
 const ENG_MISSION = ["Provide innovative and immersive educational experiences.", "Advance research and development through modern laboratories.", "Nurture entrepreneurial spirit, creativity and innovation.", "Promote environmental sustainability and social responsibility through ethical and emotional education."];
 
 const WING: Record<Institution["key"], { accent: string; hero: string; img2: string; label: string }> = {
-  pharmacy: { accent: "36 92% 50%", hero: IMG.pharmacyEvent, img2: IMG.libraryPharmacy, label: "Pharmaceutical sciences" },
-  engineering: { accent: "36 92% 50%", hero: IMG.campusAerial, img2: IMG.labPresentation, label: "Engineering and technology" },
-  polytechnic: { accent: "36 92% 50%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
+  pharmacy: { accent: "9 76% 46%", hero: IMG.pharmacyEvent, img2: IMG.libraryPharmacy, label: "Pharmaceutical sciences" },
+  engineering: { accent: "174 64% 30%", hero: IMG.campusAerial, img2: IMG.labPresentation, label: "Engineering and technology" },
+  polytechnic: { accent: "38 90% 46%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
 };
 
 function InstitutionPage({ ins }: { ins: Institution }) {
@@ -23,7 +23,7 @@ function InstitutionPage({ ins }: { ins: Institution }) {
   return (
     <div style={{ ["--wing" as string]: w.accent } as React.CSSProperties}>
       <PageHeader accent={w.accent} img={w.hero} eyebrow={`${ins.short} / Est. ${ins.est}`} title={ins.name} sub={ins.affiliation + "."} crumbs={[["Institutions"], [ins.short]]}>
-        <div className="flex flex-wrap gap-2">{ins.approvals.map((a) => <span key={a} className="text-[12px] px-2.5 py-1 rounded-lg bg-white/10 border border-white/20">{a}</span>)}</div>
+        <div className="flex flex-wrap gap-2">{ins.approvals.map((a) => <span key={a} className="text-[12px] px-2.5 py-1 rounded-lg bg-card border text-[hsl(var(--primary))] font-semibold">{a}</span>)}</div>
       </PageHeader>
       <SectionNav items={nav} />
       <Container className="mt-14 grid lg:grid-cols-[1fr_320px] gap-10">
