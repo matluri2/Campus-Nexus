@@ -77,7 +77,7 @@ export default function Admissions() {
 
       <Container className="mt-16">
         <SectionTitle id="process" eyebrow="Procedure" title="Admission process" />
-        <ol className="grid md:grid-cols-4 border rounded-md bg-card divide-y md:divide-y-0 md:divide-x">
+        <ol className="grid md:grid-cols-4 border rounded-sm bg-card divide-y md:divide-y-0 md:divide-x">
           {PROCESS.map(([t, d], i) => (
             <li key={t} className="p-6" data-testid={`card-step-${i}`}>
               <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground grid place-items-center text-[13px] font-semibold">{i + 1}</span>
@@ -90,7 +90,7 @@ export default function Admissions() {
 
       <Container className="mt-20">
         <SectionTitle id="programmes" eyebrow="Programmes" title="Programmes offered" />
-        <div className="grid lg:grid-cols-3 gap-px bg-border border rounded-md overflow-hidden">
+        <div className="grid lg:grid-cols-3 gap-px bg-border border rounded-sm overflow-hidden">
           {INSTITUTIONS.map((ins) => (
             <div key={ins.key} className="bg-card p-6" data-testid={`card-college-${ins.key}`}>
               <div className="font-display text-xl text-[hsl(var(--primary))]">{ins.short}</div>
@@ -108,7 +108,7 @@ export default function Admissions() {
 
       <Container className="mt-20">
         <SectionTitle id="fee" eyebrow="Eligibility and Fee" title="Eligibility, fee structure and refund policy" sub="Eligibility follows the norms of APSCHE, the affiliating university and the respective regulatory council (AICTE / PCI). Fees are as fixed by the Andhra Pradesh Higher Education Regulatory and Monitoring Commission." />
-        <div className="border rounded-md bg-card divide-y">
+        <div className="border rounded-sm bg-card divide-y">
           {[["Prospectus with fee structure", "prospectus"], ["Fee refund policy", "refund"], ["Programme-wise eligibility criteria", "eligibility"]].map(([l, k]) => (
             <div key={k} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4"><span className="font-medium">{l}</span><ToBePublished testid={`status-${k}`} /></div>
           ))}
@@ -116,7 +116,7 @@ export default function Admissions() {
       </Container>
 
       <Container className="mt-20">
-        <div id="enquire" className="scroll-mt-36 grid lg:grid-cols-[320px_1fr] border rounded-md overflow-hidden bg-card">
+        <div id="enquire" className="scroll-mt-36 grid lg:grid-cols-[320px_1fr] border rounded-sm overflow-hidden bg-card">
           <div className="bg-[hsl(var(--teal))] text-white p-7 flex flex-col">
             <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(14_70%_78%)]">Admission Enquiry</div>
             <h2 className="font-display text-2xl mt-2">Request a call from the admissions office</h2>

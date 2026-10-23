@@ -25,15 +25,15 @@ export function About() {
             <p>The 10.94-acre campus is set amid farmland near Narasaraopet and provides separate hostels for men and women, a fleet of college buses, an auditorium, sports grounds and dedicated computing infrastructure.</p>
           </div>
         </div>
-        <img src={asset("img/hero.jpg")} alt="Campus academic block" className="rounded-md w-full aspect-[4/3] object-cover" />
+        <img src={asset("img/hero.jpg")} alt="Campus academic block" className="rounded-sm w-full aspect-[4/3] object-cover" />
       </Container>
 
       <Container className="mt-20 grid md:grid-cols-2 gap-6">
-        <div className="rounded-md bg-[hsl(var(--teal))] text-white p-8">
+        <div className="rounded-sm bg-[hsl(var(--teal))] text-white p-8">
           <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(14_70%_78%)]">Vision</div>
           <p className="font-display text-xl md:text-2xl mt-4 leading-snug">To cultivate engineers into global leaders equipped with unwavering psychological resilience, profound emotional intelligence, and unwavering ethical integrity.</p>
         </div>
-        <div className="rounded-md border bg-card p-8">
+        <div className="rounded-sm border bg-card p-8">
           <div className="eyebrow">Mission</div>
           <ol className="mt-4 divide-y">{["Innovative and immersive educational experiences.", "Advance research and development through modern laboratories.", "Nurture entrepreneurial spirit, creativity and innovation.", "Environmental sustainability and social responsibility through ethical and emotional education."].map((m, i) => <li key={m} className="flex gap-3 py-3 text-[15px]"><span className="font-mono text-[13px] text-[hsl(var(--accent))]">M{i + 1}</span>{m}</li>)}</ol>
         </div>
@@ -41,7 +41,7 @@ export function About() {
 
       <Container className="mt-20">
         <SectionTitle id="society" eyebrow="Sponsoring Body" title="Atluri Mastan Reddy Educational Society" />
-        <dl className="border rounded-md bg-card divide-y">
+        <dl className="border rounded-sm bg-card divide-y">
           <Row label="Name of the society">Atluri Mastan Reddy Educational Society</Row>
           <Row label="Registration number">450/2003</Row>
           <Row label="Chairperson, Secretary and Correspondent">Smt. Dr. Atluri Santhi</Row>
@@ -52,7 +52,7 @@ export function About() {
 
       <Container className="mt-20">
         <SectionTitle id="approvals" eyebrow="Statutory Status" title="Approvals, recognition and accreditation" sub="Accreditation grades, validity periods and NIRF participation details will be published with supporting documents." />
-        <div className="border rounded-md bg-card overflow-x-auto">
+        <div className="border rounded-sm bg-card overflow-x-auto">
           <table className="w-full text-[14px]">
             <thead className="bg-secondary/70 text-left text-[12px] uppercase tracking-wider text-muted-foreground"><tr><th className="px-5 py-3">Institution</th><th className="px-5 py-3">Approvals / Recognition</th><th className="px-5 py-3">Documents</th></tr></thead>
             <tbody className="divide-y">
@@ -65,7 +65,7 @@ export function About() {
 
       <Container className="mt-20">
         <SectionTitle id="affiliations" eyebrow="Affiliation" title="Affiliating universities" />
-        <dl className="border rounded-md bg-card divide-y">
+        <dl className="border rounded-sm bg-card divide-y">
           <Row label="College of Engineering and Technology">Jawaharlal Nehru Technological University Kakinada (JNTUK), permanent affiliation; Autonomous status</Row>
           <Row label="College of Pharmacy">Acharya Nagarjuna University, permanent affiliation</Row>
           <Row label="Polytechnic">Diploma programmes offered under the College of Engineering and Technology</Row>
@@ -88,12 +88,12 @@ export function About() {
 export function Administration() {
   return (
     <>
-      <PageHeader eyebrow="Governance" title="Administration" sub="Leadership, statutory officers and governing bodies of A.M. Reddy Educational Institutions." crumbs={[["About Us", "/about"], ["Administration"]]} />
+      <PageHeader img="img/hero-2.jpg" eyebrow="Governance" title="Administration" sub="Leadership, statutory officers and governing bodies of A.M. Reddy Educational Institutions." crumbs={[["About Us", "/about"], ["Administration"]]} />
       <Container className="mt-16">
         <SectionTitle id="leadership" eyebrow="Leadership" title="Management and heads of institutions" sub="Photographs will be published; initials are shown in the interim." />
         <div className="grid sm:grid-cols-2 gap-4">
           {LEADERS.map((l, i) => (
-            <div key={l.name} className="flex gap-5 border rounded-md bg-card p-6" data-testid={`card-leader-${i}`}>
+            <div key={l.name} className="flex gap-5 border rounded-sm bg-card p-6" data-testid={`card-leader-${i}`}>
               <Initials name={l.name} size="lg" />
               <div>
                 <div className="font-display text-xl text-[hsl(var(--primary))]">{l.name}</div>
@@ -107,16 +107,16 @@ export function Administration() {
       </Container>
       <Container className="mt-16">
         <SectionTitle id="officers" eyebrow="Statutory Officers" title="Officers of the institutions" />
-        <div className="border rounded-md bg-card divide-y">
+        <div className="border rounded-sm bg-card divide-y">
           {OFFICERS.map((o, i) => <div key={o} className="flex flex-wrap justify-between items-center gap-3 px-5 py-4" data-testid={`row-officer-${i}`}><span className="font-medium">{o}</span><ToBePublished /></div>)}
         </div>
       </Container>
       <Container className="mt-16">
         <SectionTitle id="bodies" eyebrow="Governing Bodies" title="Composition of statutory bodies" />
         <div className="grid sm:grid-cols-2 gap-4">
-          {BODIES.map((b) => <div key={b.id} id={b.id} className="scroll-mt-36 border rounded-md bg-card p-6"><Users className="w-5 h-5 text-[hsl(var(--accent))]" /><div className="font-display text-lg mt-3">{b.name}</div><div className="text-[13px] text-muted-foreground mt-1 mb-3">Composition and minutes of meetings</div><ToBePublished /></div>)}
+          {BODIES.map((b) => <div key={b.id} id={b.id} className="scroll-mt-36 border rounded-sm bg-card p-6"><Users className="w-5 h-5 text-[hsl(var(--accent))]" /><div className="font-display text-lg mt-3">{b.name}</div><div className="text-[13px] text-muted-foreground mt-1 mb-3">Composition and minutes of meetings</div><ToBePublished /></div>)}
         </div>
-        <div className="mt-6 border rounded-md bg-card px-5 py-4 flex flex-wrap justify-between items-center gap-3"><span className="font-medium">Heads of Department (academic leadership)</span><ToBePublished /></div>
+        <div className="mt-6 border rounded-sm bg-card px-5 py-4 flex flex-wrap justify-between items-center gap-3"><span className="font-medium">Heads of Department (academic leadership)</span><ToBePublished /></div>
       </Container>
     </>
   );
@@ -131,7 +131,7 @@ export function Research() {
         <div>
           <SectionTitle id="rnd" eyebrow="R&D Cell" title="Research and Development Cell" />
           <p className="text-[15px] leading-relaxed text-foreground/85">Advancing research and development through modern laboratories is part of the stated mission of the College of Engineering and Technology. Details of the R&D cell, funded projects and publications will be published.</p>
-          <div className="mt-5 border rounded-md bg-card px-5 py-4 flex justify-between items-center"><span className="font-medium">Funded projects and publications</span><ToBePublished /></div>
+          <div className="mt-5 border rounded-sm bg-card px-5 py-4 flex justify-between items-center"><span className="font-medium">Funded projects and publications</span><ToBePublished /></div>
         </div>
         <div>
           <SectionTitle id="incubation" eyebrow="Entrepreneurship" title="Incubation Centre" />
@@ -141,8 +141,8 @@ export function Research() {
       <Container className="mt-16">
         <SectionTitle id="facilities" eyebrow="Central Facilities" title="Laboratories and library" />
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-6">
-          <img src={asset("img/library.jpg")} alt="Central library reading hall" className="rounded-md w-full aspect-[16/10] object-cover" />
-          <ul className="border rounded-md bg-card divide-y">
+          <img src={asset("img/library.jpg")} alt="Central library reading hall" className="rounded-sm w-full aspect-[16/10] object-cover" />
+          <ul className="border rounded-sm bg-card divide-y">
             {[[Cpu, "Computing", "Six CSE laboratories with 368 air-conditioned systems"], [FlaskConical, "Pharmacy laboratories", "Laboratories for pharmaceutics, pharmacology and pharmaceutical analysis"], [BookOpen, "Library", "Central library; holdings and e-resources to be published"], [Lightbulb, "Incubation centre", "Hosted by the Department of CSE"]].map(([I, t, d]) => {
               const Icon = I as typeof Cpu;
               return <li key={t as string} className="flex gap-4 p-5"><Icon className="w-5 h-5 text-[hsl(var(--primary))] shrink-0 mt-0.5" /><div><div className="font-semibold">{t as string}</div><div className="text-[14px] text-muted-foreground">{d as string}</div></div></li>;
@@ -152,7 +152,7 @@ export function Research() {
       </Container>
       <Container className="mt-16">
         <SectionTitle id="collaborations" eyebrow="Collaborations" title="Academic collaborations" />
-        <dl className="border rounded-md bg-card divide-y">
+        <dl className="border rounded-sm bg-card divide-y">
           <Row label="College of Pharmacy">Memoranda of Understanding with institutions abroad</Row>
           <Row label="List of MoUs with partners and dates"><ToBePublished /></Row>
         </dl>
@@ -169,7 +169,7 @@ export function StudentLife() {
       <PageHeader img="img/life.jpg" eyebrow="Campus" title="Student Life" sub="Residential facilities, sports, student welfare and placement support on the Petlurivaripalem campus." crumbs={[["Student Life"]]} />
       <Container className="mt-16">
         <SectionTitle id="facilities" eyebrow="Facilities" title="Campus facilities" />
-        <ul className="grid grid-cols-2 md:grid-cols-5 gap-px bg-border border rounded-md overflow-hidden">
+        <ul className="grid grid-cols-2 md:grid-cols-5 gap-px bg-border border rounded-sm overflow-hidden">
           {F.map(([I, t], i) => <li key={t} className="bg-card p-5" data-testid={`card-facility-${i}`}><I className="w-5 h-5 text-[hsl(var(--primary))]" strokeWidth={1.7} /><div className="text-[14px] font-medium mt-3">{t}</div></li>)}
         </ul>
       </Container>
@@ -181,7 +181,7 @@ export function StudentLife() {
       </Container>
       <Container className="mt-16">
         <SectionTitle id="placements" eyebrow="Training and Placement Cell" title="Placements" sub="The placement cell provides campus placement training and coordinates recruitment drives." />
-        <div className="border rounded-md bg-card overflow-x-auto">
+        <div className="border rounded-sm bg-card overflow-x-auto">
           <table className="w-full text-[14px]">
             <thead className="bg-secondary/70 text-left text-[12px] uppercase tracking-wider text-muted-foreground"><tr><th className="px-5 py-3">Recruiter</th><th className="px-5 py-3">Details</th><th className="px-5 py-3">Date</th></tr></thead>
             <tbody className="divide-y">
@@ -202,14 +202,14 @@ export function StudentLife() {
 export function Committees() {
   return (
     <>
-      <PageHeader eyebrow="Statutory Committees" title="Committees and Cells" sub="Statutory and welfare committees constituted as per UGC, AICTE and Government of India regulations." crumbs={[["Student Life", "/student-life"], ["Committees"]]} />
+      <PageHeader img="img/library.jpg" eyebrow="Statutory Committees" title="Committees and Cells" sub="Statutory and welfare committees constituted as per UGC, AICTE and Government of India regulations." crumbs={[["Student Life", "/student-life"], ["Committees"]]} />
       <Container className="mt-12">
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="rounded-md border-2 border-[hsl(var(--accent))] bg-card p-6 flex gap-4">
+          <div className="rounded-sm border-2 border-[hsl(var(--accent))] bg-card p-6 flex gap-4">
             <ShieldAlert className="w-7 h-7 text-[hsl(var(--accent))] shrink-0" />
             <div><div className="font-display text-lg">National Anti-Ragging Helpline</div><a href="tel:18001805522" className="block font-display text-2xl text-[hsl(var(--primary))] mt-1" data-testid="link-antiragging-helpline">{ANTI_RAGGING_HELPLINE}</a><div className="text-[13px] text-muted-foreground mt-1">Toll free, 24x7. <a href="https://www.antiragging.in" target="_blank" rel="noreferrer" className="underline" data-testid="link-antiragging-site">www.antiragging.in</a></div></div>
           </div>
-          <div className="rounded-md border bg-card p-6 flex gap-4">
+          <div className="rounded-sm border bg-card p-6 flex gap-4">
             <Phone className="w-7 h-7 text-[hsl(var(--primary))] shrink-0" />
             <div><div className="font-display text-lg">Women Helpline (Institutional)</div><a href={WOMEN_HELPLINE_TEL} className="block font-display text-2xl text-[hsl(var(--primary))] mt-1" data-testid="link-women-helpline">{WOMEN_HELPLINE}</a><div className="text-[13px] text-muted-foreground mt-1">For students and staff of the institutions</div></div>
           </div>
@@ -217,7 +217,7 @@ export function Committees() {
         <div className="mt-12 space-y-4">
           {COMMITTEES.map((c, i) => (
             <Reveal key={c.id}>
-              <section id={c.id} className="scroll-mt-36 border rounded-md bg-card p-6 md:p-8 grid md:grid-cols-[1fr_260px] gap-6" data-testid={`card-committee-${c.id}`}>
+              <section id={c.id} className="scroll-mt-36 border rounded-sm bg-card p-6 md:p-8 grid md:grid-cols-[1fr_260px] gap-6" data-testid={`card-committee-${c.id}`}>
                 <div>
                   <div className="text-[12px] font-mono text-muted-foreground">{String(i + 1).padStart(2, "0")}</div>
                   <h2 className="font-display text-xl md:text-2xl text-[hsl(var(--primary))] mt-1">{c.name}</h2>
@@ -243,18 +243,18 @@ export function Notices() {
   const news = NEWS.filter((n) => !["Examinations", "IQAC"].includes(n.tag));
   return (
     <>
-      <PageHeader eyebrow="Information Corner" title="Notices, News and Information" sub="Circulars, announcements, events, Right to Information and career opportunities." crumbs={[["Information Corner"]]} />
+      <PageHeader img="img/cse-lab.jpg" eyebrow="Information Corner" title="Notices, News and Information" sub="Circulars, announcements, events, Right to Information and career opportunities." crumbs={[["Information Corner"]]} />
       <Container className="mt-16 grid lg:grid-cols-[1fr_340px] gap-12">
         <div>
           <SectionTitle id="notices" eyebrow="Circulars" title="Notices and announcements" />
-          <ul className="border rounded-md bg-card divide-y">{notices.map((n, i) => <li key={n.title} className="flex gap-4 px-5 py-4" data-testid={`row-notice-${i}`}><span className="w-20 shrink-0 text-[12px] font-mono text-muted-foreground pt-0.5">{n.date}</span><span><span className="font-medium">{n.title}</span><span className="block text-[11px] uppercase tracking-wider text-[hsl(var(--accent))] mt-1">{n.tag}</span></span></li>)}</ul>
+          <ul className="border rounded-sm bg-card divide-y">{notices.map((n, i) => <li key={n.title} className="flex gap-4 px-5 py-4" data-testid={`row-notice-${i}`}><span className="w-20 shrink-0 text-[12px] font-mono text-muted-foreground pt-0.5">{n.date}</span><span><span className="font-medium">{n.title}</span><span className="block text-[11px] uppercase tracking-wider text-[hsl(var(--accent))] mt-1">{n.tag}</span></span></li>)}</ul>
           <div className="mt-14" />
           <SectionTitle id="news" eyebrow="Campus" title="News, events and achievements" />
-          <ul className="border rounded-md bg-card divide-y ">{news.map((n, i) => <li key={n.title} className="grid sm:grid-cols-[120px_1fr_auto] gap-x-4 gap-y-1 px-5 py-4" data-testid={`text-event-${i}`}><span className="text-[12px] font-mono text-muted-foreground">{n.date}</span><span className="font-medium">{n.title}</span><span className="text-[11px] uppercase tracking-wider text-[hsl(var(--accent))]">{n.tag}</span></li>)}</ul>
-          <div className="mt-6 border rounded-md bg-card px-5 py-4 flex justify-between items-center"><span className="font-medium">Newsletters</span><ToBePublished /></div>
+          <ul className="border rounded-sm bg-card divide-y ">{news.map((n, i) => <li key={n.title} className="grid sm:grid-cols-[120px_1fr_auto] gap-x-4 gap-y-1 px-5 py-4" data-testid={`text-event-${i}`}><span className="text-[12px] font-mono text-muted-foreground">{n.date}</span><span className="font-medium">{n.title}</span><span className="text-[11px] uppercase tracking-wider text-[hsl(var(--accent))]">{n.tag}</span></li>)}</ul>
+          <div className="mt-6 border rounded-sm bg-card px-5 py-4 flex justify-between items-center"><span className="font-medium">Newsletters</span><ToBePublished /></div>
         </div>
         <aside className="space-y-6">
-          <div id="rti" className="scroll-mt-36 border rounded-md bg-card p-6">
+          <div id="rti" className="scroll-mt-36 border rounded-sm bg-card p-6">
             <FileSearch className="w-6 h-6 text-[hsl(var(--primary))]" />
             <h2 className="font-display text-xl mt-3">Right to Information</h2>
             <p className="text-[14px] text-muted-foreground mt-2">Information under the RTI Act, 2005.</p>
@@ -263,13 +263,13 @@ export function Notices() {
               <div><dt className="font-semibold">First Appellate Authority</dt><dd className="mt-1"><ToBePublished /></dd></div>
             </dl>
           </div>
-          <div id="careers" className="scroll-mt-36 border rounded-md bg-card p-6">
+          <div id="careers" className="scroll-mt-36 border rounded-sm bg-card p-6">
             <Briefcase className="w-6 h-6 text-[hsl(var(--primary))]" />
             <h2 className="font-display text-xl mt-3">Careers</h2>
             <p className="text-[14px] text-muted-foreground mt-2">There are no open positions listed at present. Prospective applicants may write to the principal of the respective institution.</p>
             <a href={`mailto:${EMAIL_ENG}`} className="mt-3 block text-[13px] text-[hsl(var(--primary))] break-all hover:underline" data-testid="link-careers-email">{EMAIL_ENG}</a>
           </div>
-          <div className="border rounded-md bg-card p-6"><h2 className="font-semibold">Reservation roster</h2><div className="mt-2"><ToBePublished /></div></div>
+          <div className="border rounded-sm bg-card p-6"><h2 className="font-semibold">Reservation roster</h2><div className="mt-2"><ToBePublished /></div></div>
         </aside>
       </Container>
     </>
@@ -281,13 +281,13 @@ export function Gallery() {
   const G = [["img/hero.jpg", "Campus academic block"], ["img/engineering.jpg", "College of Engineering and Technology"], ["img/pharmacy.jpg", "Pharmacy laboratory"], ["img/lab.jpg", "Computer laboratory"], ["img/library.jpg", "Library reading hall"], ["img/workshop.jpg", "Engineering workshop"], ["img/life.jpg", "Student celebrations"], ["img/campus.jpg", "Campus grounds"]];
   return (
     <>
-      <PageHeader eyebrow="Information Corner" title="Picture Gallery" sub="Campus, laboratories and student activities." crumbs={[["Gallery"]]} />
+      <PageHeader img="img/hero.jpg" eyebrow="Information Corner" title="Picture Gallery" sub="Campus, laboratories and student activities." crumbs={[["Gallery"]]} />
       <Container className="mt-12">
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {G.map(([src, cap], i) => (
             <li key={src} className={i === 0 ? "sm:col-span-2 sm:row-span-2" : ""}>
               <figure className="group h-full" data-testid={`img-gallery-${i}`}>
-                <div className="overflow-hidden rounded-md h-[calc(100%-2rem)]"><img src={asset(src)} alt={cap} loading="lazy" className="w-full h-full min-h-48 object-cover aspect-[4/3] transition-transform duration-700 group-hover:scale-[1.03]" /></div>
+                <div className="overflow-hidden rounded-sm h-[calc(100%-2rem)]"><img src={asset(src)} alt={cap} loading="lazy" className="w-full h-full min-h-48 object-cover aspect-[4/3] transition-transform duration-700 group-hover:scale-[1.03]" /></div>
                 <figcaption className="text-[13px] text-muted-foreground mt-2">{cap}</figcaption>
               </figure>
             </li>
@@ -314,7 +314,7 @@ export function Contact() {
             <a href={`mailto:${EMAIL_PHARM}`} className="flex gap-3 hover:underline" data-testid="link-contact-3"><Mail className="w-5 h-5 text-[hsl(var(--primary))]" />{EMAIL_PHARM}</a>
           </address>
         </div>
-        <a id="map" href={MAP} target="_blank" rel="noreferrer" className="scroll-mt-36 group relative block rounded-md overflow-hidden min-h-[300px] bg-[hsl(var(--teal))] text-white" data-testid="link-contact-map">
+        <a id="map" href={MAP} target="_blank" rel="noreferrer" className="scroll-mt-36 group relative block rounded-sm overflow-hidden min-h-[300px] bg-[hsl(var(--teal))] text-white" data-testid="link-contact-map">
           <img src={asset("img/hero.jpg")} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
           <div className="relative h-full p-8 flex flex-col justify-end min-h-[300px]">
             <MapPin className="w-8 h-8" /><div className="font-display text-2xl mt-3">Petlurivaripalem, Narasaraopet</div>
@@ -324,7 +324,7 @@ export function Contact() {
       </Container>
       <Container className="mt-16">
         <SectionTitle id="directory" eyebrow="Directory" title="Telephone and email directory" />
-        <div className="border rounded-md bg-card overflow-x-auto">
+        <div className="border rounded-sm bg-card overflow-x-auto">
           <table className="w-full text-[14px]">
             <thead className="bg-secondary/70 text-left text-[12px] uppercase tracking-wider text-muted-foreground"><tr><th className="px-5 py-3">Office</th><th className="px-5 py-3">Contact</th></tr></thead>
             <tbody className="divide-y">
