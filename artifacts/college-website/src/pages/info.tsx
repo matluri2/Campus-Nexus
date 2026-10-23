@@ -8,6 +8,7 @@ import {
   asset, NEWS, OFFICERS, BODIES, COMMITTEES, INSTITUTIONS, PHONE, PHONE_TEL, MAP, ADDRESS, ADDRESS_ENG, PHARM_PHONES, SOCIETY, EMAIL_ENG, EMAIL_PHARM,
   WOMEN_HELPLINE, WOMEN_HELPLINE_TEL, ANTI_RAGGING_HELPLINE,
 } from "@/data/site";
+import { IMG } from "@/data/images";
 
 const Row = ({ label, children, testid }: { label: string; children: ReactNode; testid?: string }) => (
   <div className="grid sm:grid-cols-[260px_1fr] gap-1 sm:gap-6 px-5 py-4" data-testid={testid}><dt className="text-[13px] font-semibold text-muted-foreground">{label}</dt><dd className="text-[15px]">{children}</dd></div>
@@ -18,7 +19,7 @@ export function About() {
   const T = [["2003", "Atluri Mastan Reddy Educational Society registered (Reg. No. 450/2003)."], ["2004", "A.M. Reddy Memorial College of Pharmacy established."], ["2008", "College of Engineering and Technology established under Chairman Sri A. Srinivasa Reddy."], ["2009", "B.Tech Civil Engineering commenced."], ["2013", "Diploma in Civil Engineering commenced under the Polytechnic."]];
   return (
     <>
-      <PageHeader img="img/amr/eng-about-college.jpg" eyebrow="About Us" title="About the Institutions" sub="A.M. Reddy Educational Institutions, Petlurivaripalem, approximately 3 km from Narasaraopet, Palnadu District, Andhra Pradesh." crumbs={[["About Us"]]} />
+      <PageHeader img={IMG.campusAerial} eyebrow="About Us" title="About the Institutions" sub="A.M. Reddy Educational Institutions, Petlurivaripalem, approximately 3 km from Narasaraopet, Palnadu District, Andhra Pradesh." crumbs={[["About Us"]]} />
       <Container className="mt-16 grid lg:grid-cols-[1.3fr_1fr] gap-12">
         <div>
           <SectionTitle id="overview" eyebrow="Overview" title="Who we are" />
@@ -27,7 +28,7 @@ export function About() {
             <p>The 10.94-acre campus is set amid farmland near Narasaraopet and provides separate hostels for men and women, a fleet of college buses, an auditorium, sports grounds and dedicated computing infrastructure.</p>
           </div>
         </div>
-        <img src={asset("img/amr/eng-gallery-gallery1.jpg")} alt="Academic blocks and lawns of the campus" className="rounded-xl shadow-lg w-full aspect-[4/3] object-cover" />
+        <img src={asset(IMG.campusLawns)} alt="Academic blocks and lawns of the campus" className="rounded-xl shadow-lg w-full aspect-[4/3] object-cover" />
       </Container>
 
       <Container className="mt-16">
@@ -95,7 +96,7 @@ export function About() {
 export function Administration() {
   return (
     <>
-      <PageHeader img="img/amr/eng-gallery-gallery2.jpg" eyebrow="Governance" title="Administration" sub="Leadership, academic heads, statutory officers and governing bodies of A.M. Reddy Educational Institutions." crumbs={[["About Us", "/about"], ["Administration"]]} />
+      <PageHeader img={IMG.awardCeremony} eyebrow="Governance" title="Administration" sub="Leadership, academic heads, statutory officers and governing bodies of A.M. Reddy Educational Institutions." crumbs={[["About Us", "/about"], ["Administration"]]} />
       <Container className="mt-14">
         <SectionTitle id="leadership" eyebrow="Leadership" title="Management and heads of institutions" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -131,7 +132,7 @@ export function Administration() {
 export function Research() {
   return (
     <>
-      <PageHeader img="img/amr/eng-gallery-gallery4.jpg" pos="center 35%" eyebrow="Research and Innovation" title="Research and Development" sub="Laboratories, incubation support and academic collaborations across pharmacy and engineering." crumbs={[["Academics"], ["Research"]]} />
+      <PageHeader img={IMG.labPresentation} pos="center 35%" eyebrow="Research and Innovation" title="Research and Development" sub="Laboratories, incubation support and academic collaborations across pharmacy and engineering." crumbs={[["Academics"], ["Research"]]} />
       <Container className="mt-16 grid lg:grid-cols-2 gap-12">
         <div>
           <SectionTitle id="rnd" eyebrow="R&D Cell" title="Research and Development Cell" />
@@ -146,7 +147,7 @@ export function Research() {
       <Container className="mt-16">
         <SectionTitle id="facilities" eyebrow="Central Facilities" title="Laboratories and library" />
         <div className="grid md:grid-cols-[1.2fr_1fr] gap-6">
-          <img src={asset("img/amr/eng-campus-library-2.jpg")} alt="Central library reading hall" className="rounded-lg w-full aspect-[16/10] object-cover" />
+          <img src={asset(IMG.libraryEngineering)} alt="Central library reading hall" className="rounded-lg w-full aspect-[16/10] object-cover" />
           <ul className="border rounded-lg bg-card divide-y">
             {[[Cpu, "Computing", "Six CSE laboratories with 368 air-conditioned systems"], [FlaskConical, "Pharmacy laboratories", "Laboratories for pharmaceutics, pharmacology and pharmaceutical analysis"], [BookOpen, "Library", "Central library; holdings and e-resources to be published"], [Lightbulb, "Incubation centre", "Hosted by the Department of CSE"]].map(([I, t, d]) => {
               const Icon = I as typeof Cpu;
@@ -171,7 +172,7 @@ export function StudentLife() {
   const F = [[Wind, "Well-ventilated classrooms"], [Building2, "Separate hostels for boys and girls"], [Bus, "Fleet of college buses"], [Droplets, "Mineral water plant"], [Mic2, "Auditorium"], [Trophy, "Outdoor sports grounds"], [Utensils, "Canteen"], [ShieldCheck, "Campus security"], [Zap, "Uninterrupted power backup"], [Briefcase, "Placement training"]] as const;
   return (
     <>
-      <PageHeader img="img/amr/pharm-student-life-sports-sports01.jpg" eyebrow="Campus" title="Student Life" sub="Residential facilities, sports, student welfare and placement support on the Petlurivaripalem campus." crumbs={[["Student Life"]]} />
+      <PageHeader img={IMG.sports1} eyebrow="Campus" title="Student Life" sub="Residential facilities, sports, student welfare and placement support on the Petlurivaripalem campus." crumbs={[["Student Life"]]} />
       <Container className="mt-16">
         <SectionTitle id="facilities" eyebrow="Facilities" title="Campus facilities" />
         <ul className="grid grid-cols-2 md:grid-cols-5 gap-px bg-border border rounded-lg overflow-hidden">
@@ -181,8 +182,8 @@ export function StudentLife() {
       <Container className="mt-16 grid lg:grid-cols-2 gap-10">
         <div id="hostels" className="scroll-mt-36"><SectionTitle eyebrow="Residence" title="Hostels" /><p className="text-[15px] leading-relaxed text-foreground/85">Separate hostels are provided for boys and girls, with round-the-clock security. Hostel fee and capacity details will be published.</p><div className="mt-4"><ToBePublished /></div></div>
         <div id="health" className="scroll-mt-36"><SectionTitle eyebrow="Wellbeing" title="Health facilities" /><p className="text-[15px] leading-relaxed text-foreground/85">Health camps are organised on campus, including a dental camp held on 22 December 2025. Details of first-aid and tie-up hospitals will be published.</p><div className="mt-4"><ToBePublished /></div></div>
-        <div id="sports" className="scroll-mt-36"><SectionTitle eyebrow="Sports" title="Sports and games" /><div className="grid grid-cols-3 gap-2 mb-4">{["sports02", "sports05", "sports08"].map((f) => <img key={f} src={asset(`img/amr/pharm-student-life-sports-${f}.jpg`)} alt="Students at the sports meet" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" />)}</div><p className="text-[15px] leading-relaxed text-foreground/85">Outdoor grounds are available for games and athletics. Cultural celebrations such as Sankranthi Sambaralu 2026 bring the campus community together.</p></div>
-        <div id="nss" className="scroll-mt-36"><SectionTitle eyebrow="Outreach" title="NSS / NCC" /><div className="grid grid-cols-3 gap-2 mb-4">{["eng-campus-nss-aidsday-2025-09", "eng-campus-nss-mountainday-2025-01", "eng-latest-events-nss-road-safety-2025"].map((f) => <img key={f} src={asset(`img/amr/${f}.jpg`)} alt="NSS volunteers at an awareness programme" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" />)}</div><p className="text-[15px] leading-relaxed text-foreground/85">NSS volunteers of the College of Engineering conduct awareness programmes such as World AIDS Day, International Mountain Day and road safety drives. Details of NSS / NCC units and enrolment will be published.</p><div className="mt-4"><ToBePublished /></div></div>
+        <div id="sports" className="scroll-mt-36"><SectionTitle eyebrow="Sports" title="Sports and games" /><div className="grid grid-cols-3 gap-2 mb-4">{[IMG.sports2, IMG.sports3, IMG.sports4].map((f) => <img key={f} src={asset(f)} alt="Students at the sports meet" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" />)}</div><p className="text-[15px] leading-relaxed text-foreground/85">Outdoor grounds are available for games and athletics. Cultural celebrations such as Sankranthi Sambaralu 2026 bring the campus community together.</p></div>
+        <div id="nss" className="scroll-mt-36"><SectionTitle eyebrow="Outreach" title="NSS / NCC" /><div className="grid grid-cols-3 gap-2 mb-4">{[IMG.nssAidsDay, IMG.nssMountainDay, IMG.nssRoadSafety].map((f) => <img key={f} src={asset(f)} alt="NSS volunteers at an awareness programme" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" />)}</div><p className="text-[15px] leading-relaxed text-foreground/85">NSS volunteers of the College of Engineering conduct awareness programmes such as World AIDS Day, International Mountain Day and road safety drives. Details of NSS / NCC units and enrolment will be published.</p><div className="mt-4"><ToBePublished /></div></div>
       </Container>
       <Container className="mt-16">
         <SectionTitle id="placements" eyebrow="Training and Placement Cell" title="Placements" sub="The placement cell provides campus placement training and coordinates recruitment drives." />
@@ -196,7 +197,7 @@ export function StudentLife() {
         </div>
       </Container>
       <Container className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
-        {["img/amr/eng-placements-thinksysq-01.jpg", "img/amr/pharm-student-life-placements-heterolabs-01.jpg", "img/amr/eng-placements-placement-activity-02.jpg", "img/amr/pharm-student-life-placements-placement01.jpg"].map((src, i) => <img key={src} src={asset(src)} alt="Campus placement drive" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" data-testid={`img-placement-${i}`} />)}
+        {[IMG.placementThinksysq, IMG.placementCarro, IMG.placementDivis, IMG.placementHetero].map((src, i) => <img key={src} src={asset(src)} alt="Campus placement drive" loading="lazy" className="rounded-lg aspect-[4/3] w-full object-cover" data-testid={`img-placement-${i}`} />)}
       </Container>
       <Container className="mt-16">
         <SectionTitle id="alumni" eyebrow="Alumni" title="Alumni of the College of Pharmacy" sub="Graduates who attended the alumni meet of A.M. Reddy Memorial College of Pharmacy. Alumni association registration and office-bearers will be published." />
@@ -214,7 +215,7 @@ export function StudentLife() {
 export function Committees() {
   return (
     <>
-      <PageHeader img="img/amr/pharm-gallery-ibro5.jpg" eyebrow="Statutory Committees" title="Committees and Cells" sub="Statutory and welfare committees constituted as per UGC, AICTE and Government of India regulations." crumbs={[["Student Life", "/student-life"], ["Committees"]]} />
+      <PageHeader img={IMG.pharmacyEvent} eyebrow="Statutory Committees" title="Committees and Cells" sub="Statutory and welfare committees constituted as per UGC, AICTE and Government of India regulations." crumbs={[["Student Life", "/student-life"], ["Committees"]]} />
       <Container className="mt-12">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="rounded-lg border-2 border-[hsl(var(--accent))] bg-card p-6 flex gap-4">
@@ -255,7 +256,7 @@ export function Notices() {
   const news = NEWS.filter((n) => !["Examinations", "IQAC"].includes(n.tag));
   return (
     <>
-      <PageHeader img="img/amr/eng-gallery-gallery2.jpg" eyebrow="Information Corner" title="Notices, News and Information" sub="Circulars, announcements, events, Right to Information and career opportunities." crumbs={[["Information Corner"]]} />
+      <PageHeader img={IMG.awardCeremony} eyebrow="Information Corner" title="Notices, News and Information" sub="Circulars, announcements, events, Right to Information and career opportunities." crumbs={[["Information Corner"]]} />
       <Container className="mt-16 grid lg:grid-cols-[1fr_340px] gap-12">
         <div>
           <SectionTitle id="notices" eyebrow="Circulars" title="Notices and announcements" />
@@ -306,7 +307,7 @@ export function Gallery() {
   const cur = open !== null ? list[open] : null;
   return (
     <>
-      <PageHeader img="img/amr/eng-campus-non-technical-events-sankranthi-sambaralu-2026-pongal3.jpg" eyebrow="Information Corner" title="Picture Gallery" sub={`${PHOTOS.length} photographs of the campus, library, laboratories, festivals, sports, placements and NSS.`} crumbs={[["Gallery"]]} />
+      <PageHeader img={IMG.sankranthi} eyebrow="Information Corner" title="Picture Gallery" sub={`${PHOTOS.length} photographs of the campus, library, laboratories, festivals, sports, placements and NSS.`} crumbs={[["Gallery"]]} />
       <Container className="mt-10">
         <div role="tablist" aria-label="Gallery categories" className="flex flex-wrap gap-2 mb-6">
           {(["All", ...GALLERY_CATS] as const).map((c) => {
@@ -350,7 +351,7 @@ export function Contact() {
   const DIR = [["Main office", PHONE, PHONE_TEL], ["Women helpline", WOMEN_HELPLINE, WOMEN_HELPLINE_TEL], ["Principal, College of Engineering", EMAIL_ENG, `mailto:${EMAIL_ENG}`], ["College of Pharmacy", EMAIL_PHARM, `mailto:${EMAIL_PHARM}`], ...PHARM_PHONES.map((n, i) => [`College of Pharmacy (phone ${i + 1})`, n, `tel:+91${n}`]), ["National Anti-Ragging Helpline", ANTI_RAGGING_HELPLINE, "tel:18001805522"]];
   return (
     <>
-      <PageHeader img="img/amr/eng-about-college.jpg" eyebrow="Contact" title="Contact Us" sub="Approximately 3 km from Narasaraopet town." crumbs={[["Contact Us"]]} />
+      <PageHeader img={IMG.campusAerial} eyebrow="Contact" title="Contact Us" sub="Approximately 3 km from Narasaraopet town." crumbs={[["Contact Us"]]} />
       <Container className="mt-16 grid lg:grid-cols-2 gap-10">
         <div id="contact" className="scroll-mt-36">
           <SectionTitle eyebrow="Address" title="A.M. Reddy Educational Institutions" />
@@ -362,7 +363,7 @@ export function Contact() {
           </address>
         </div>
         <a id="map" href={MAP} target="_blank" rel="noreferrer" className="scroll-mt-36 group relative block rounded-lg overflow-hidden min-h-[300px] bg-[hsl(var(--teal))] text-white" data-testid="link-contact-map">
-          <img src={asset("img/amr/eng-about-college.jpg")} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+          <img src={asset(IMG.campusAerial)} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
           <div className="relative h-full p-8 flex flex-col justify-end min-h-[300px]">
             <MapPin className="w-8 h-8" /><div className="font-display text-2xl mt-3">Petlurivaripalem, Narasaraopet</div>
             <span className="mt-4 inline-flex items-center gap-2 self-start h-11 px-5 rounded-lg bg-white text-[hsl(var(--primary))] font-semibold text-[14px]">Open in Google Maps <ExternalLink className="w-4 h-4" /></span>

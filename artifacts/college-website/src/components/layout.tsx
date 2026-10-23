@@ -10,6 +10,7 @@ import {
 } from "@/data/site";
 import type { Person } from "@/data/people";
 import { ACCREDITATION_LOGOS } from "@/data/gallery";
+import { IMG } from "@/data/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -84,12 +85,12 @@ function SearchDialog({ open, setOpen }: { open: boolean; setOpen: (b: boolean) 
 
 /* ---------- Main header ---------- */
 const FEATURE: { img: string; kicker: string; title: string; href: string }[] = [
-  { img: "img/amr/eng-about-college.jpg", kicker: "Since 2004", title: "A single campus of 10.94 acres near Narasaraopet", href: "/about" },
-  { img: "img/amr/eng-gallery-gallery1.jpg", kicker: "Three institutions", title: "Pharmacy, Engineering and Technology, and Polytechnic", href: "/engineering" },
-  { img: "img/amr/eng-gallery-gallery4.jpg", kicker: "Academics", title: "Laboratories, research cell and an incubation centre", href: "/research" },
-  { img: "img/amr/eng-campus-library-2.jpg", kicker: "Admissions 2026", title: "Submit an admission enquiry online", href: "/admissions#enquire" },
-  { img: "img/amr/pharm-student-life-sports-sports01.jpg", kicker: "Campus life", title: "Hostels, sports, transport and student support", href: "/student-life" },
-  { img: "img/amr/pharm-events-science-day-2025.jpg", kicker: "Transparency", title: "UGC Public Self-Disclosure, sections (a) to (j)", href: "/disclosure" },
+  { img: IMG.campusAerial, kicker: "Since 2004", title: "A single campus of 10.94 acres near Narasaraopet", href: "/about" },
+  { img: IMG.campusLawns, kicker: "Three institutions", title: "Pharmacy, Engineering and Technology, and Polytechnic", href: "/engineering" },
+  { img: IMG.labPresentation, kicker: "Academics", title: "Laboratories, research cell and an incubation centre", href: "/research" },
+  { img: IMG.libraryEngineering, kicker: "Admissions 2026", title: "Submit an admission enquiry online", href: "/admissions#enquire" },
+  { img: IMG.sports1, kicker: "Campus life", title: "Hostels, sports, transport and student support", href: "/student-life" },
+  { img: IMG.scienceDay, kicker: "Transparency", title: "UGC Public Self-Disclosure, sections (a) to (j)", href: "/disclosure" },
 ];
 
 function Brand({ light }: { light?: boolean }) {
@@ -349,7 +350,7 @@ export function Reveal({ children, delay = 0, className = "" }: { children: Reac
   return <motion.div initial={reduce ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-40px" }} transition={{ duration: 0.6, delay, ease: EASE }} className={className}>{children}</motion.div>;
 }
 
-export function PageHeader({ title, sub, crumbs, img = "img/amr/eng-about-college.jpg", eyebrow, children, accent, pos = "center" }: { title: string; sub?: string; crumbs: [string, string?][]; img?: string; eyebrow?: string; children?: ReactNode; accent?: string; pos?: string }) {
+export function PageHeader({ title, sub, crumbs, img = IMG.campusAerial, eyebrow, children, accent, pos = "center" }: { title: string; sub?: string; crumbs: [string, string?][]; img?: string; eyebrow?: string; children?: ReactNode; accent?: string; pos?: string }) {
   const reduce = useReducedMotion();
   return (
     <section className="relative bg-[hsl(var(--ink))] text-white overflow-hidden" style={accent ? ({ ["--wing" as string]: accent } as React.CSSProperties) : undefined}>

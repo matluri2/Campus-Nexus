@@ -62,7 +62,7 @@ export const PEOPLE: Person[] = [
   { name: "Dr. G. Bhaskar Reddy", role: "HoD, Basic Sciences and Humanities", institution: ENG, inst: "engineering", group: "hod", photo: "img/people/g-bhaskar-reddy.jpg" },
   { name: "Mr. B. Chinna Babu", role: "HoD, Agricultural Engineering", institution: ENG, inst: "engineering", group: "hod", photo: "img/people/b-chinna-babu.jpg" },
 
-  /* ---------- Alumni (College of Pharmacy) ---------- */
+  /* ---------- Alumni (College of Pharmacy): add more rows here ---------- */
   ...([
     ["Mrs. N. Haritha", "Associate Scientific Lead, Novartis Health Care Pvt. Ltd."],
     ["Mrs. K. Visalakshi", "Assoc. Professor, Talla Padmavathi College of Pharmacy, Warangal"],
@@ -70,16 +70,6 @@ export const PEOPLE: Person[] = [
     ["Dr. G. Raghavendra Kumar", "Associate Professor, NIPS"],
     ["Mr. G. Satis Babu", "In-charge Pharmacist"],
     ["Mr. T. Baji Babu", "Asst. Manager (Marketing), Sun Pharma"],
-    ["Mr. P. Anvesh", "Sr. Executive, Aurobindo Pharma"],
-    ["Mr. G. Anji Babu", "Sr. Executive, Biological E Ltd."],
-    ["Mr. K. Srikanth", "Asst. Manager, Biological E Ltd."],
-    ["Mr. Sd. Naseeruddin", "Sr. Executive, Eudia SEZ Pvt. Ltd."],
-    ["Mr. G. Srinivas", "Pharmacist"],
-    ["Mr. B. Srinivas Rao", "Business"],
-    ["Ms. Priyanka", "QA Executive, Safe Parenterals Ltd."],
-    ["Mr. Niranjan", "Welfare & Educational Assistant"],
-    ["Ms. D. Yasoda Rani", "Sachivalayam"],
-    ["Mr. B. Naresh", "Executive, Cronus Pharma Specialities Ltd."],
   ] as const).map(([name, role], i): Person => ({ name, role, institution: PHARM, inst: "pharmacy", group: "alumni", photo: `img/people/alumni-pharmacy-${i + 1}.jpg` })),
 ];
 

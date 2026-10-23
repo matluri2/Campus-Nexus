@@ -4,13 +4,14 @@ import { CheckCircle2, Mail, ArrowRight } from "lucide-react";
 import { Container, PageHeader, Reveal, SectionTitle, ToBePublished, Initials, SectionNav, PersonCard, PersonPhoto } from "@/components/layout";
 import { hodsOf, principalOf } from "@/data/people";
 import { asset, INSTITUTIONS, type Institution } from "@/data/site";
+import { IMG } from "@/data/images";
 
 const ENG_MISSION = ["Provide innovative and immersive educational experiences.", "Advance research and development through modern laboratories.", "Nurture entrepreneurial spirit, creativity and innovation.", "Promote environmental sustainability and social responsibility through ethical and emotional education."];
 
 const WING: Record<Institution["key"], { accent: string; hero: string; img2: string; label: string }> = {
-  pharmacy: { accent: "36 92% 50%", hero: "img/amr/pharm-gallery-ibro5.jpg", img2: "img/amr/pharm-academics-library-1.jpg", label: "Pharmaceutical sciences" },
-  engineering: { accent: "36 92% 50%", hero: "img/amr/eng-about-college.jpg", img2: "img/amr/eng-gallery-gallery4.jpg", label: "Engineering and technology" },
-  polytechnic: { accent: "36 92% 50%", hero: "img/amr/eng-gallery-gallery8.jpg", img2: "img/amr/eng-gallery-gallery7.jpg", label: "Diploma in engineering" },
+  pharmacy: { accent: "36 92% 50%", hero: IMG.pharmacyEvent, img2: IMG.libraryPharmacy, label: "Pharmaceutical sciences" },
+  engineering: { accent: "36 92% 50%", hero: IMG.campusAerial, img2: IMG.labPresentation, label: "Engineering and technology" },
+  polytechnic: { accent: "36 92% 50%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
 };
 
 function InstitutionPage({ ins }: { ins: Institution }) {
@@ -96,7 +97,7 @@ function InstitutionPage({ ins }: { ins: Institution }) {
           )}
           {ins.key === "polytechnic" && (
             <div id="training" className="mt-20 scroll-mt-36 grid md:grid-cols-2 gap-8 items-center">
-              <img src={asset("img/amr/eng-gallery-gallery8.jpg")} alt="Students in a laboratory" className="rounded-lg w-full aspect-[4/3] object-cover" />
+              <img src={asset(IMG.labSurvey)} alt="Students in a laboratory" className="rounded-lg w-full aspect-[4/3] object-cover" />
               <p className="text-[15px] leading-relaxed text-foreground/85">Diploma students train in the workshops and laboratories of the College of Engineering and Technology, gaining hands-on competence for technician roles in industry and a pathway to lateral entry into B.Tech.</p>
             </div>
           )}

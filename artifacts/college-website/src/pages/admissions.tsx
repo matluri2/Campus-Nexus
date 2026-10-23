@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Container, PageHeader, Reveal, SectionTitle, ToBePublished } from "@/components/layout";
 import { PHONE, PHONE_TEL, INSTITUTIONS } from "@/data/site";
+import { IMG } from "@/data/images";
 
 const COURSES: Record<string, { college: string; branches: string[] }> = {
   "B.Tech": { college: "Engineering", branches: ["Civil Engineering", "Electrical and Electronics Engineering", "Electronics and Communication Engineering", "Computer Science and Engineering", "CSE (Cyber Security)", "CSE (AI and ML)", "CSE (Data Science)", "Robotics and Artificial Intelligence", "Agricultural Engineering"] },
@@ -73,7 +74,7 @@ export default function Admissions() {
 
   return (
     <>
-      <PageHeader img="img/amr/eng-gallery-gallery2.jpg" eyebrow="Admissions 2026" title="Admissions" sub="Undergraduate, postgraduate and diploma programmes in pharmacy, engineering and technology." crumbs={[["Admissions"]]} />
+      <PageHeader img={IMG.awardCeremony} eyebrow="Admissions 2026" title="Admissions" sub="Undergraduate, postgraduate and diploma programmes in pharmacy, engineering and technology." crumbs={[["Admissions"]]} />
 
       <Container className="mt-16">
         <SectionTitle id="process" eyebrow="Procedure" title="Admission process" />

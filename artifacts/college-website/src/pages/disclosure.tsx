@@ -3,6 +3,7 @@ import { ArrowRight, Info } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Container, PageHeader, ToBePublished } from "@/components/layout";
 import { DISCLOSURE, UGC_GUIDELINE, UGC_REF, LAST_UPDATED } from "@/data/site";
+import { IMG } from "@/data/images";
 
 export default function Disclosure() {
   const total = DISCLOSURE.reduce((n, s) => n + s.items.length, 0);
@@ -10,7 +11,7 @@ export default function Disclosure() {
   const pct = (avail / total) * 100;
   return (
     <>
-      <PageHeader img="img/amr/eng-campus-library-2.jpg" eyebrow="Mandatory Disclosure" title="UGC Public Self-Disclosure" sub={`Published in accordance with the ${UGC_GUIDELINE}, issued vide ${UGC_REF}.`} crumbs={[["Information Corner", "/notices"], ["UGC Public Self-Disclosure"]]} />
+      <PageHeader img={IMG.libraryEngineering} eyebrow="Mandatory Disclosure" title="UGC Public Self-Disclosure" sub={`Published in accordance with the ${UGC_GUIDELINE}, issued vide ${UGC_REF}.`} crumbs={[["Information Corner", "/notices"], ["UGC Public Self-Disclosure"]]} />
       <Container className="mt-16">
         <div className="grid lg:grid-cols-[1fr_360px] gap-6">
           <div className="flex gap-4 text-[15px] text-foreground/85 leading-relaxed border rounded-lg bg-card p-7">

@@ -9,14 +9,15 @@ import { Container, Reveal, SectionTitle, PersonPhoto, ToBePublished } from "@/c
 import { asset, INSTITUTIONS, NEWS, PHONE, PHONE_TEL } from "@/data/site";
 import { LEADERSHIP, ALUMNI } from "@/data/people";
 import { EVENT_PHOTOS, RECRUITER_LOGOS } from "@/data/gallery";
+import { IMG } from "@/data/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const SLIDES = [
-  { img: "img/amr/eng-about-college.jpg", pos: "center 60%", kicker: "Narasaraopet, Palnadu District / Since 2004", title: "Professional education in pharmacy, engineering and technology", sub: "The College of Pharmacy, the autonomous College of Engineering and Technology, and the Polytechnic, on one 10.94-acre campus at Petlurivaripalem." },
-  { img: "img/amr/eng-gallery-gallery4.jpg", pos: "center 35%", kicker: "Learning by doing", title: "Laboratories, projects and an incubation centre", sub: "Six CSE laboratories with 368 air-conditioned systems, pharmacy laboratories and the AMR Incubation Foundation." },
-  { img: "img/amr/pharm-student-life-sports-sports01.jpg", pos: "center 40%", kicker: "Campus life", title: "Sports, festivals, NSS and a residential campus", sub: "Separate hostels for men and women, a college bus network, sports grounds and year-round student activities." },
-  { img: "img/amr/eng-placements-thinksysq-01.jpg", pos: "center 30%", kicker: "Training and placement", title: "Campus drives for engineering and pharmacy", sub: "23 students selected for Thinksysq, Bangalore (Jan 2025); pool drives with Divis and Carro Health for pharmacy students." },
+  { img: IMG.campusAerial, pos: "center 60%", kicker: "Narasaraopet, Palnadu District / Since 2004", title: "Professional education in pharmacy, engineering and technology", sub: "The College of Pharmacy, the autonomous College of Engineering and Technology, and the Polytechnic, on one 10.94-acre campus at Petlurivaripalem." },
+  { img: IMG.labPresentation, pos: "center 35%", kicker: "Learning by doing", title: "Laboratories, projects and an incubation centre", sub: "Six CSE laboratories with 368 air-conditioned systems, pharmacy laboratories and the AMR Incubation Foundation." },
+  { img: IMG.sports1, pos: "center 40%", kicker: "Campus life", title: "Sports, festivals, NSS and a residential campus", sub: "Separate hostels for men and women, a college bus network, sports grounds and year-round student activities." },
+  { img: IMG.placementThinksysq, pos: "center 30%", kicker: "Training and placement", title: "Campus drives for engineering and pharmacy", sub: "23 students selected for Thinksysq, Bangalore (Jan 2025); pool drives with Divis and Carro Health for pharmacy students." },
 ];
 
 function Hero() {
@@ -31,7 +32,7 @@ function Hero() {
   const s = SLIDES[i];
   const go = (d: number) => setI((n) => (n + d + SLIDES.length) % SLIDES.length);
   return (
-    <section className="relative h-[540px] md:h-[580px] bg-[hsl(var(--ink))] text-white overflow-hidden" aria-roledescription="carousel" aria-label="Highlights" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <section className="relative h-[660px] sm:h-[560px] md:h-[580px] bg-[hsl(var(--ink))] text-white overflow-hidden" aria-roledescription="carousel" aria-label="Highlights" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <AnimatePresence initial={false}>
         <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1, ease: "easeInOut" }} className="absolute inset-0 overflow-hidden">
           <img src={asset(s.img)} alt="" className={`absolute inset-0 w-full h-full object-cover ${reduce ? "" : "kenburns"}`} style={{ objectPosition: s.pos }} />
@@ -39,7 +40,7 @@ function Hero() {
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--ink)/0.9)] via-[hsl(var(--ink)/0.6)] to-[hsl(var(--ink)/0.15)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[hsl(var(--ink)/0.7)] to-transparent" />
-      <Container className="relative h-full flex flex-col justify-center pb-16">
+      <Container className="relative h-full flex flex-col justify-center pb-20">
         <AnimatePresence mode="wait">
           <motion.div key={i} initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.5, ease: EASE }} className="max-w-2xl">
             <div className="eyebrow eyebrow-light">{s.kicker}</div>
@@ -53,9 +54,7 @@ function Hero() {
           <Link href="/admissions#enquire" className="group inline-flex items-center gap-2 h-12 px-6 rounded-md bg-[hsl(var(--saffron))] text-[hsl(var(--ink))] font-bold text-[15px] hover:brightness-105" data-testid="link-hero-admissions">Apply for Admissions 2026 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" /></Link>
           <Link href="/about" className="inline-flex items-center h-12 px-6 rounded-md border border-white/40 font-semibold text-[15px] hover:bg-white/10" data-testid="link-hero-about">Explore the campus</Link>
         </div>
-      </Container>
-      <div className="absolute bottom-20 md:bottom-24 inset-x-0">
-        <Container className="flex items-center gap-3">
+        <div className="mt-6 flex items-center gap-3">
           <button onClick={() => go(-1)} aria-label="Previous slide" className="w-9 h-9 rounded-full border border-white/40 grid place-items-center hover:bg-white/15" data-testid="button-hero-prev"><ChevronLeft className="w-4 h-4" /></button>
           <div className="flex gap-1.5" role="tablist" aria-label="Choose slide">
             {SLIDES.map((sl, k) => (
@@ -65,8 +64,8 @@ function Hero() {
             ))}
           </div>
           <button onClick={() => go(1)} aria-label="Next slide" className="w-9 h-9 rounded-full border border-white/40 grid place-items-center hover:bg-white/15" data-testid="button-hero-next"><ChevronRight className="w-4 h-4" /></button>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </section>
   );
 }
@@ -138,8 +137,8 @@ function Welcome() {
     <section className="pb-16 md:pb-20">
       <Container className="grid lg:grid-cols-2 gap-10 items-center">
         <Reveal className="relative">
-          <div className="rounded-xl overflow-hidden aspect-[16/10] shadow-lg"><img src={asset("img/amr/eng-gallery-gallery1.jpg")} alt="Academic blocks and lawns of the A.M. Reddy campus" className="w-full h-full object-cover" /></div>
-          <div className="hidden sm:block absolute -bottom-6 -right-4 w-48 rounded-lg overflow-hidden border-4 border-background shadow-lg"><img src={asset("img/amr/eng-campus-library-3.jpg")} alt="Central library" className="w-full aspect-[4/3] object-cover" /></div>
+          <div className="rounded-xl overflow-hidden aspect-[16/10] shadow-lg"><img src={asset(IMG.campusLawns)} alt="Academic blocks and lawns of the A.M. Reddy campus" className="w-full h-full object-cover" /></div>
+          <div className="hidden sm:block absolute -bottom-6 -right-4 w-48 rounded-lg overflow-hidden border-4 border-background shadow-lg"><img src={asset(IMG.libraryEngineering)} alt="Central library" className="w-full aspect-[4/3] object-cover" /></div>
         </Reveal>
         <Reveal delay={0.1}>
           <SectionTitle eyebrow="Welcome to A.M. Reddy" title="An institution rooted in Palnadu, preparing professionals for the nation" />
@@ -263,9 +262,9 @@ function Leadership() {
 function Placements() {
   const logos = [...RECRUITER_LOGOS, ...RECRUITER_LOGOS];
   const drives = [
-    { img: "img/amr/eng-placements-thinksysq-01.jpg", r: "Thinksysq, Bangalore", d: "23 AMR students selected", t: "Jan 2025" },
-    { img: "img/amr/pharm-student-life-placements-corro-health-corro-health-placement-01.jpg", r: "Carro Health", d: "Pharmacy students placed in pool drive", t: "15 Apr 2025" },
-    { img: "img/amr/pharm-student-life-placements-divis-lab-08032025-placement1.jpg", r: "Divis", d: "Pool campus drive for pharmacy students", t: "8 Mar 2025" },
+    { img: IMG.placementThinksysq, r: "Thinksysq, Bangalore", d: "23 AMR students selected", t: "Jan 2025" },
+    { img: IMG.placementCarro, r: "Carro Health", d: "Pharmacy students placed in pool drive", t: "15 Apr 2025" },
+    { img: IMG.placementDivis, r: "Divis", d: "Pool campus drive for pharmacy students", t: "8 Mar 2025" },
   ];
   return (
     <section className="py-16 md:py-20">
@@ -310,7 +309,7 @@ function Alumni() {
           <Link href="/student-life#alumni" className="inline-flex items-center gap-2 text-[14px] font-bold text-[hsl(var(--accent))] hover:underline" data-testid="link-home-alumni">All {ALUMNI.length} alumni <ArrowRight className="w-4 h-4" /></Link>
         </div>
         <ul className="flex gap-4 overflow-x-auto no-scrollbar snap-x pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
-          {ALUMNI.slice(0, 10).map((p, k) => (
+          {ALUMNI.slice(0, 6).map((p, k) => (
             <li key={p.name} className="snap-start shrink-0 w-[200px]">
               <article className="card-soft h-full overflow-hidden" data-testid={`card-alumni-${k}`}>
                 <div className="aspect-square overflow-hidden bg-secondary"><PersonPhoto person={p} className="w-full h-full" /></div>
@@ -361,11 +360,11 @@ function News() {
 
 function CampusLife() {
   const tiles = [
-    { img: "img/amr/eng-about-college.jpg", t: "Campus", h: "/gallery", c: "col-span-2 row-span-2" },
-    { img: "img/amr/eng-campus-library-1.jpg", t: "Library", h: "/gallery", c: "" },
-    { img: "img/amr/pharm-student-life-sports-sports03.jpg", t: "Sports", h: "/student-life#sports", c: "" },
-    { img: "img/amr/eng-campus-non-technical-events-sankranthi-sambaralu-2026-pongal3.jpg", t: "Festivals", h: "/gallery", c: "" },
-    { img: "img/amr/eng-campus-nss-mountainday-2025-01.jpg", t: "NSS", h: "/student-life#nss", c: "" },
+    { img: IMG.campusAerial, t: "Campus", h: "/gallery", c: "col-span-2 row-span-2" },
+    { img: IMG.libraryEngineering, t: "Library", h: "/gallery", c: "" },
+    { img: IMG.sports3, t: "Sports", h: "/student-life#sports", c: "" },
+    { img: IMG.sankranthi, t: "Festivals", h: "/gallery", c: "" },
+    { img: IMG.nssMountainDay, t: "NSS", h: "/student-life#nss", c: "" },
   ];
   return (
     <section className="bg-[hsl(var(--sand))] py-16 md:py-20">
@@ -391,7 +390,7 @@ function CampusLife() {
 function CTA() {
   return (
     <section className="relative overflow-hidden bg-[hsl(var(--teal-deep))] text-white">
-      <img src={asset("img/amr/eng-gallery-gallery2.jpg")} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+      <img src={asset(IMG.awardCeremony)} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
       <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--teal-deep))] via-[hsl(var(--teal-deep)/0.9)] to-[hsl(var(--teal-deep)/0.6)]" />
       <Container className="relative py-14 md:py-16 grid lg:grid-cols-[1fr_auto] gap-8 items-center">
         <div>

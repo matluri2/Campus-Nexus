@@ -1,4 +1,5 @@
 import { PEOPLE } from "./people";
+import { IMG } from "@/data/images";
 export const asset = (p: string) => import.meta.env.BASE_URL + p;
 
 export const INST_NAME = "A.M. Reddy Educational Institutions";
@@ -43,7 +44,7 @@ export type Institution = {
 
 export const INSTITUTIONS: Institution[] = [
   {
-    key: "pharmacy", href: "/pharmacy", short: "College of Pharmacy", est: "2004", img: "img/amr/pharm-gallery-home-teachers.jpg",
+    key: "pharmacy", href: "/pharmacy", short: "College of Pharmacy", est: "2004", img: IMG.pharmacyFaculty,
     name: "A.M. Reddy Memorial College of Pharmacy",
     affiliation: "Permanently affiliated to Acharya Nagarjuna University",
     approvals: ["Approved by PCI, New Delhi", "NAAC", "UGC 2(f) and 12(B)", "ISO 9001:2015"],
@@ -60,7 +61,7 @@ export const INSTITUTIONS: Institution[] = [
     ],
   },
   {
-    key: "engineering", href: "/engineering", short: "College of Engineering", est: "2008", img: "img/amr/eng-gallery-gallery1.jpg",
+    key: "engineering", href: "/engineering", short: "College of Engineering", est: "2008", img: IMG.campusLawns,
     name: "A.M. Reddy Memorial College of Engineering and Technology",
     affiliation: "Autonomous. Permanently affiliated to JNTUK, Kakinada",
     approvals: ["Approved by AICTE, New Delhi", "Autonomous", "NAAC", "NBA", "UGC", "ISO 9001:2015", "MSME"],
@@ -82,7 +83,7 @@ export const INSTITUTIONS: Institution[] = [
     ],
   },
   {
-    key: "polytechnic", href: "/polytechnic", short: "Polytechnic", est: "2013", img: "img/amr/eng-gallery-gallery7.jpg",
+    key: "polytechnic", href: "/polytechnic", short: "Polytechnic", est: "2013", img: IMG.labSession,
     name: "Polytechnic (Diploma in Engineering)",
     affiliation: "Offered under A.M. Reddy Memorial College of Engineering and Technology",
     approvals: ["Diploma in Engineering"],
