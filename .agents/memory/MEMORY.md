@@ -1,0 +1,1 @@
+- [Design direction](design-direction.md) — owner rejected the old-AMR maroon/gold look; keep the site boldly modern.
