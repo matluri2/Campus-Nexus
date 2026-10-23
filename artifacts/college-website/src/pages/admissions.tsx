@@ -65,7 +65,7 @@ export default function Admissions() {
     <FormField control={form.control} name={name} render={({ field: f }) => (
       <FormItem>
         <FormLabel className="text-[13px] font-semibold">{label}{req && <span className="text-[hsl(var(--accent))]"> *</span>}</FormLabel>
-        <FormControl><Input type={type} placeholder={ph} {...f} value={f.value ?? ""} className="h-11 rounded-sm bg-background" data-testid={`input-${name}`} /></FormControl>
+        <FormControl><Input type={type} placeholder={ph} {...f} value={f.value ?? ""} className="h-11 rounded-lg bg-background" data-testid={`input-${name}`} /></FormControl>
         <FormMessage />
       </FormItem>
     )} />
@@ -73,11 +73,11 @@ export default function Admissions() {
 
   return (
     <>
-      <PageHeader img="img/campus.jpg" eyebrow="Admissions 2026" title="Admissions" sub="Undergraduate, postgraduate and diploma programmes in pharmacy, engineering and technology." crumbs={[["Admissions"]]} />
+      <PageHeader img="img/amr/eng-gallery-gallery2.jpg" eyebrow="Admissions 2026" title="Admissions" sub="Undergraduate, postgraduate and diploma programmes in pharmacy, engineering and technology." crumbs={[["Admissions"]]} />
 
       <Container className="mt-16">
         <SectionTitle id="process" eyebrow="Procedure" title="Admission process" />
-        <ol className="grid md:grid-cols-4 border rounded-sm bg-card divide-y md:divide-y-0 md:divide-x">
+        <ol className="grid md:grid-cols-4 border rounded-lg bg-card divide-y md:divide-y-0 md:divide-x">
           {PROCESS.map(([t, d], i) => (
             <li key={t} className="p-6" data-testid={`card-step-${i}`}>
               <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground grid place-items-center text-[13px] font-semibold">{i + 1}</span>
@@ -90,7 +90,7 @@ export default function Admissions() {
 
       <Container className="mt-20">
         <SectionTitle id="programmes" eyebrow="Programmes" title="Programmes offered" />
-        <div className="grid lg:grid-cols-3 gap-px bg-border border rounded-sm overflow-hidden">
+        <div className="grid lg:grid-cols-3 gap-px bg-border border rounded-lg overflow-hidden">
           {INSTITUTIONS.map((ins) => (
             <div key={ins.key} className="bg-card p-6" data-testid={`card-college-${ins.key}`}>
               <div className="font-display text-xl text-[hsl(var(--primary))]">{ins.short}</div>
@@ -108,7 +108,7 @@ export default function Admissions() {
 
       <Container className="mt-20">
         <SectionTitle id="fee" eyebrow="Eligibility and Fee" title="Eligibility, fee structure and refund policy" sub="Eligibility follows the norms of APSCHE, the affiliating university and the respective regulatory council (AICTE / PCI). Fees are as fixed by the Andhra Pradesh Higher Education Regulatory and Monitoring Commission." />
-        <div className="border rounded-sm bg-card divide-y">
+        <div className="border rounded-lg bg-card divide-y">
           {[["Prospectus with fee structure", "prospectus"], ["Fee refund policy", "refund"], ["Programme-wise eligibility criteria", "eligibility"]].map(([l, k]) => (
             <div key={k} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4"><span className="font-medium">{l}</span><ToBePublished testid={`status-${k}`} /></div>
           ))}
@@ -116,7 +116,7 @@ export default function Admissions() {
       </Container>
 
       <Container className="mt-20">
-        <div id="enquire" className="scroll-mt-36 grid lg:grid-cols-[320px_1fr] border rounded-sm overflow-hidden bg-card">
+        <div id="enquire" className="scroll-mt-36 grid lg:grid-cols-[320px_1fr] border rounded-lg overflow-hidden bg-card">
           <div className="bg-[hsl(var(--teal))] text-white p-7 flex flex-col">
             <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(14_70%_78%)]">Admission Enquiry</div>
             <h2 className="font-display text-2xl mt-2">Request a call from the admissions office</h2>
@@ -136,7 +136,7 @@ export default function Admissions() {
                 <h3 className="font-display text-2xl mt-5">Thank you, {done.studentName}.</h3>
                 <p className="text-muted-foreground mt-3">Your enquiry for {done.course} ({done.branch}) has been noted on this page. Please contact the admissions office at <a href={PHONE_TEL} className="text-foreground font-semibold underline">{PHONE}</a> to complete your enquiry.</p>
                 <p className="text-[12px] text-muted-foreground mt-3">This form does not reserve a seat. Admission is subject to counselling and verification of documents.</p>
-                <button onClick={() => setDone(null)} className="mt-6 h-11 px-6 rounded-sm bg-primary text-primary-foreground font-semibold" data-testid="button-new-enquiry">Submit another enquiry</button>
+                <button onClick={() => setDone(null)} className="mt-6 h-11 px-6 rounded-lg bg-primary text-primary-foreground font-semibold" data-testid="button-new-enquiry">Submit another enquiry</button>
               </div>
             ) : (
               <Form {...form}>
@@ -154,7 +154,7 @@ export default function Admissions() {
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="radiogroup">
                               {Object.entries(COURSES).map(([k, v]) => (
                                 <button type="button" role="radio" aria-checked={f.value === k} key={k} onClick={() => { f.onChange(k); form.setValue("branch", v.branches.length === 1 ? v.branches[0] : ""); form.clearErrors("course"); }}
-                                  className={`text-left rounded-sm border p-3.5 transition-colors ${f.value === k ? "border-primary bg-secondary ring-1 ring-primary" : "hover:border-[hsl(var(--primary)/0.4)]"}`} data-testid={`option-course-${k}`}>
+                                  className={`text-left rounded-lg border p-3.5 transition-colors ${f.value === k ? "border-primary bg-secondary ring-1 ring-primary" : "hover:border-[hsl(var(--primary)/0.4)]"}`} data-testid={`option-course-${k}`}>
                                   <span className="block font-semibold">{k}</span><span className="block text-[12px] text-muted-foreground">{v.college}</span>
                                 </button>
                               ))}
@@ -168,7 +168,7 @@ export default function Admissions() {
                             {course ? (
                               <div className="flex flex-wrap gap-2" data-testid="select-branch" role="radiogroup">
                                 {COURSES[course].branches.map((b) => (
-                                  <button type="button" role="radio" aria-checked={f.value === b} key={b} onClick={() => { f.onChange(b); form.clearErrors("branch"); }} className={`rounded-sm px-3 py-2 text-[13px] border transition-colors ${f.value === b ? "bg-primary text-primary-foreground border-primary" : "hover:bg-secondary"}`} data-testid={`option-branch-${b.replace(/\W+/g, "-").toLowerCase()}`}>{b}</button>
+                                  <button type="button" role="radio" aria-checked={f.value === b} key={b} onClick={() => { f.onChange(b); form.clearErrors("branch"); }} className={`rounded-lg px-3 py-2 text-[13px] border transition-colors ${f.value === b ? "bg-primary text-primary-foreground border-primary" : "hover:bg-secondary"}`} data-testid={`option-branch-${b.replace(/\W+/g, "-").toLowerCase()}`}>{b}</button>
                                 ))}
                               </div>
                             ) : <p className="text-[14px] text-muted-foreground">Select a course first.</p>}
@@ -183,20 +183,20 @@ export default function Admissions() {
                       <>
                         <div className="grid sm:grid-cols-3 gap-5">{field("village", "Village / Town")}{field("mandal", "Mandal")}{field("district", "District")}</div>
                         <FormField control={form.control} name="address" render={({ field: f }) => (
-                          <FormItem><FormLabel className="text-[13px] font-semibold">Address<span className="text-[hsl(var(--accent))]"> *</span></FormLabel><FormControl><Textarea rows={3} {...f} className="rounded-sm bg-background" data-testid="input-address" /></FormControl><FormMessage /></FormItem>
+                          <FormItem><FormLabel className="text-[13px] font-semibold">Address<span className="text-[hsl(var(--accent))]"> *</span></FormLabel><FormControl><Textarea rows={3} {...f} className="rounded-lg bg-background" data-testid="input-address" /></FormControl><FormMessage /></FormItem>
                         )} />
-                        <div className="rounded-sm bg-secondary px-4 py-3 text-[14px]"><span className="text-muted-foreground">Enquiring for: </span><span className="font-semibold">{course} / {branch}</span></div>
+                        <div className="rounded-lg bg-secondary px-4 py-3 text-[14px]"><span className="text-muted-foreground">Enquiring for: </span><span className="font-semibold">{course} / {branch}</span></div>
                       </>
                     )}
                   </Reveal>
                   <div className="mt-8 pt-5 border-t flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
                     <p className="text-[12px] text-muted-foreground max-w-xs">Details are used only for admission follow-up. Submission does not confirm admission.</p>
                     <div className="flex gap-2">
-                      {step > 0 && <button type="button" onClick={back} className="h-11 px-4 rounded-sm border inline-flex items-center gap-1.5 font-medium" data-testid="button-prev-step"><ArrowLeft className="w-4 h-4" />Back</button>}
+                      {step > 0 && <button type="button" onClick={back} className="h-11 px-4 rounded-lg border inline-flex items-center gap-1.5 font-medium" data-testid="button-prev-step"><ArrowLeft className="w-4 h-4" />Back</button>}
                       {step < 3 ? (
-                        <button type="button" onClick={next} className="h-11 px-6 rounded-sm bg-primary text-primary-foreground font-semibold inline-flex items-center gap-1.5" data-testid="button-next-step">Continue <ArrowRight className="w-4 h-4" /></button>
+                        <button type="button" onClick={next} className="h-11 px-6 rounded-lg bg-primary text-primary-foreground font-semibold inline-flex items-center gap-1.5" data-testid="button-next-step">Continue <ArrowRight className="w-4 h-4" /></button>
                       ) : (
-                        <button type="submit" className="h-11 px-6 rounded-sm bg-[hsl(var(--accent))] text-white font-semibold inline-flex items-center gap-1.5" data-testid="button-submit-enquiry">Submit enquiry <Check className="w-4 h-4" /></button>
+                        <button type="submit" className="h-11 px-6 rounded-lg bg-[hsl(var(--accent))] text-white font-semibold inline-flex items-center gap-1.5" data-testid="button-submit-enquiry">Submit enquiry <Check className="w-4 h-4" /></button>
                       )}
                     </div>
                   </div>

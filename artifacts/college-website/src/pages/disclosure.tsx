@@ -10,16 +10,16 @@ export default function Disclosure() {
   const pct = (avail / total) * 100;
   return (
     <>
-      <PageHeader img="img/library-2.jpg" eyebrow="Mandatory Disclosure" title="UGC Public Self-Disclosure" sub={`Published in accordance with the ${UGC_GUIDELINE}, issued vide ${UGC_REF}.`} crumbs={[["Information Corner", "/notices"], ["UGC Public Self-Disclosure"]]} />
+      <PageHeader img="img/amr/eng-campus-library-2.jpg" eyebrow="Mandatory Disclosure" title="UGC Public Self-Disclosure" sub={`Published in accordance with the ${UGC_GUIDELINE}, issued vide ${UGC_REF}.`} crumbs={[["Information Corner", "/notices"], ["UGC Public Self-Disclosure"]]} />
       <Container className="mt-16">
         <div className="grid lg:grid-cols-[1fr_360px] gap-6">
-          <div className="flex gap-4 text-[15px] text-foreground/85 leading-relaxed border rounded-sm bg-card p-7">
+          <div className="flex gap-4 text-[15px] text-foreground/85 leading-relaxed border rounded-lg bg-card p-7">
             <Info className="w-5 h-5 text-[hsl(var(--primary))] shrink-0 mt-1" />
             <p>All information below is openly accessible without login. Items marked <span className="font-semibold">View</span> link to the section of this website where the information is published. Items marked <span className="font-semibold">To be published</span> are being compiled by the institution and will be added on this page. Last reviewed: {LAST_UPDATED}.</p>
           </div>
-          <div className="rounded-sm bg-[hsl(var(--teal-deep))] text-white p-7" data-testid="text-disclosure-count">
+          <div className="rounded-lg bg-[hsl(var(--teal-deep))] text-white p-7" data-testid="text-disclosure-count">
             <div className="text-[11px] uppercase tracking-[0.18em] text-[hsl(var(--brass))]">Publication status</div>
-            <div className="mt-3 flex items-baseline gap-2"><span className="num-display text-[64px]">{avail}</span><span className="text-white/70">of {total} items published</span></div>
+            <div className="mt-3 flex items-baseline gap-2"><span className="num-display text-[40px]">{avail}</span><span className="text-white/70">of {total} items published</span></div>
             <div className="mt-4 h-1.5 rounded-full bg-white/15 overflow-hidden" aria-hidden><div className="h-full bg-[hsl(var(--brass))]" style={{ width: `${pct}%` }} /></div>
           </div>
         </div>
@@ -32,7 +32,7 @@ export default function Disclosure() {
                 const n = s.items.filter((i) => i.href).length;
                 return (
                   <li key={s.id}>
-                    <a href={`#${s.id}`} className="group flex items-center gap-3 lg:-ml-px lg:border-l-2 border-transparent hover:border-[hsl(var(--accent))] px-3 py-2 text-[13.5px] rounded-sm lg:rounded-none border lg:border-y-0 lg:border-r-0 bg-card lg:bg-transparent" data-testid={`link-disc-jump-${s.id}`}>
+                    <a href={`#${s.id}`} className="group flex items-center gap-3 lg:-ml-px lg:border-l-2 border-transparent hover:border-[hsl(var(--accent))] px-3 py-2 text-[13.5px] rounded-lg lg:rounded-none border lg:border-y-0 lg:border-r-0 bg-card lg:bg-transparent" data-testid={`link-disc-jump-${s.id}`}>
                       <span className="font-mono text-[12px] text-[hsl(var(--accent))]">({s.letter})</span>
                       <span className="flex-1 group-hover:text-[hsl(var(--primary))]">{s.title}</span>
                       <span className="hidden lg:inline font-mono text-[11px] text-muted-foreground">{n}/{s.items.length}</span>
@@ -45,11 +45,11 @@ export default function Disclosure() {
 
           <Accordion type="multiple" defaultValue={DISCLOSURE.map((s) => s.id)} className="space-y-4 min-w-0">
             {DISCLOSURE.map((s) => (
-              <AccordionItem key={s.id} value={s.id} id={s.id} className="scroll-mt-36 border rounded-sm bg-card overflow-hidden">
+              <AccordionItem key={s.id} value={s.id} id={s.id} className="scroll-mt-36 border rounded-lg bg-card overflow-hidden">
                 <AccordionTrigger className="px-6 py-5 hover:no-underline hover:bg-[hsl(var(--sand)/0.6)]" data-testid={`button-disc-${s.id}`}>
                   <span className="flex items-center gap-4 text-left">
-                    <span className="num-display text-[40px] w-10 text-[hsl(var(--accent))] italic">{s.letter}</span>
-                    <span><span className="block font-display text-[24px] leading-tight text-[hsl(var(--primary))]">{s.title}</span><span className="block text-[12px] text-muted-foreground font-normal mt-1">{s.items.filter((i) => i.href).length} of {s.items.length} published</span></span>
+                    <span className="num-display text-[26px] w-8 text-[hsl(var(--accent))]">{s.letter}</span>
+                    <span><span className="block font-display text-[18px] leading-tight text-[hsl(var(--primary))]">{s.title}</span><span className="block text-[12px] text-muted-foreground font-normal mt-1">{s.items.filter((i) => i.href).length} of {s.items.length} published</span></span>
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-0 pb-0">
@@ -63,7 +63,7 @@ export default function Disclosure() {
                           <tr key={d.label} data-testid={`row-disc-${s.id}-${i}`}>
                             <td className="px-6 py-3.5 font-mono text-[12px] text-muted-foreground">{s.letter}.{i + 1}</td>
                             <td className="px-6 py-3.5">{d.label}</td>
-                            <td className="px-6 py-3.5">{d.href ? <Link href={d.href} className="inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1 text-[12.5px] font-semibold bg-[hsl(var(--secondary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-colors" data-testid={`link-disc-${s.id}-${i}`}><span className="w-1.5 h-1.5 rounded-full bg-current" />View <ArrowRight className="w-3.5 h-3.5" /></Link> : <ToBePublished testid={`status-disc-${s.id}-${i}`} />}</td>
+                            <td className="px-6 py-3.5">{d.href ? <Link href={d.href} className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[12.5px] font-semibold bg-[hsl(var(--secondary))] text-[hsl(var(--primary))] hover:bg-[hsl(var(--primary))] hover:text-white transition-colors" data-testid={`link-disc-${s.id}-${i}`}><span className="w-1.5 h-1.5 rounded-full bg-current" />View <ArrowRight className="w-3.5 h-3.5" /></Link> : <ToBePublished testid={`status-disc-${s.id}-${i}`} />}</td>
                           </tr>
                         ))}
                       </tbody>

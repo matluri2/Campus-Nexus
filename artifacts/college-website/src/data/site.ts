@@ -1,3 +1,4 @@
+import { PEOPLE } from "./people";
 export const asset = (p: string) => import.meta.env.BASE_URL + p;
 
 export const INST_NAME = "A.M. Reddy Educational Institutions";
@@ -14,6 +15,8 @@ export const UGC_GUIDELINE = "UGC Guidelines on Public Self-Disclosure by Higher
 export const UGC_REF = "UGC D.O. No. F.14-4/2023 (CPP-II), dated 10 June 2024";
 export const LAST_UPDATED = "January 2026";
 export const ANTI_RAGGING_HELPLINE = "1800-180-5522";
+export const ADDRESS_ENG = "Vinukonda Road, Petlurivaripalem, Narasaraopet – 522601";
+export const PHARM_PHONES = ["9959835065", "9959838989", "9985095050"];
 
 export type NewsItem = { date: string; title: string; tag: string };
 export const NEWS: NewsItem[] = [
@@ -40,7 +43,7 @@ export type Institution = {
 
 export const INSTITUTIONS: Institution[] = [
   {
-    key: "pharmacy", href: "/pharmacy", short: "College of Pharmacy", est: "2004", img: "img/pharmacy.jpg",
+    key: "pharmacy", href: "/pharmacy", short: "College of Pharmacy", est: "2004", img: "img/amr/pharm-gallery-home-teachers.jpg",
     name: "A.M. Reddy Memorial College of Pharmacy",
     affiliation: "Permanently affiliated to Acharya Nagarjuna University",
     approvals: ["Approved by PCI, New Delhi", "NAAC", "UGC 2(f) and 12(B)", "ISO 9001:2015"],
@@ -57,11 +60,11 @@ export const INSTITUTIONS: Institution[] = [
     ],
   },
   {
-    key: "engineering", href: "/engineering", short: "College of Engineering", est: "2008", img: "img/engineering.jpg",
+    key: "engineering", href: "/engineering", short: "College of Engineering", est: "2008", img: "img/amr/eng-gallery-gallery1.jpg",
     name: "A.M. Reddy Memorial College of Engineering and Technology",
     affiliation: "Autonomous. Permanently affiliated to JNTUK, Kakinada",
     approvals: ["Approved by AICTE, New Delhi", "Autonomous", "NAAC", "NBA", "UGC", "ISO 9001:2015", "MSME"],
-    principal: "Dr. Ch. Mallikharjun, M.Tech., Ph.D.", email: EMAIL_ENG,
+    principal: "Dr. Ch. Mallikarjun, M.Tech., Ph.D.", email: EMAIL_ENG,
     summary: "An autonomous engineering college offering nine B.Tech branches and M.Tech programmes in Civil Engineering, supported by the Department of Basic Sciences and Humanities.",
     groups: [
       { title: "B.Tech", items: [
@@ -79,7 +82,7 @@ export const INSTITUTIONS: Institution[] = [
     ],
   },
   {
-    key: "polytechnic", href: "/polytechnic", short: "Polytechnic", est: "2013", img: "img/workshop.jpg",
+    key: "polytechnic", href: "/polytechnic", short: "Polytechnic", est: "2013", img: "img/amr/eng-gallery-gallery7.jpg",
     name: "Polytechnic (Diploma in Engineering)",
     affiliation: "Offered under A.M. Reddy Memorial College of Engineering and Technology",
     approvals: ["Diploma in Engineering"],
@@ -98,15 +101,8 @@ export const INSTITUTIONS: Institution[] = [
   },
 ];
 
-export const LEADERS = [
-  { name: "Smt. Dr. Atluri Santhi", role: "Chairperson, Secretary and Correspondent", inst: "A.M. Reddy Educational Institutions", contact: PHONE },
-  { name: "Sri A. Srinivasa Reddy", role: "Founding Chairman (2008)", inst: "College of Engineering and Technology" },
-  { name: "Dr. Ch. Mallikharjun", role: "Principal", inst: "College of Engineering and Technology", quals: "M.Tech., Ph.D.", contact: EMAIL_ENG },
-  { name: "Dr. K. Krishna Reddy", role: "Principal, Diploma", inst: "Polytechnic", quals: "M.Tech., Ph.D." },
-];
-
 export const OFFICERS = [
-  "Principal, College of Pharmacy", "Finance Officer", "Controller of Examinations", "Chief Vigilance Officer",
+  "Finance Officer", "Chief Vigilance Officer",
   "Ombudsperson", "Registrar / Administrative Officer", "Central Public Information Officer (RTI)", "First Appellate Authority (RTI)",
 ];
 
@@ -145,16 +141,16 @@ export const DISCLOSURE: DiscSection[] = [
     { label: "Sponsoring body details", href: "/about#society" },
   ] },
   { id: "administration", letter: "b", title: "Administration", items: [
-    { label: "Chairperson, Secretary and Correspondent", href: "/administration#leadership" },
+    { label: "President, Chairperson, Secretary and Correspondent (with photographs)", href: "/administration#leadership" },
     { label: "Principals", href: "/administration#leadership" },
     { label: "Finance Officer", href: null },
-    { label: "Controller of Examinations", href: null },
+    { label: "Controller of Examinations (Dr. K. Sreekar Chand)", href: "/administration#hods" },
     { label: "Chief Vigilance Officer", href: null },
     { label: "Ombudsperson", href: "/committees#ombudsperson" },
     { label: "Governing Body composition", href: "/administration#bodies" },
     { label: "Academic Council / Boards of Studies / Finance Committee", href: "/administration#bodies" },
     { label: "Internal Complaints Committee", href: "/committees#icc" },
-    { label: "Academic leadership (Heads of Department)", href: null },
+    { label: "Academic leadership (Dean and Heads of Department, with photographs)", href: "/administration#hods" },
   ] },
   { id: "academics", letter: "c", title: "Academics", items: [
     { label: "Programmes offered", href: "/admissions#programmes" },
@@ -189,7 +185,7 @@ export const DISCLOSURE: DiscSection[] = [
     { label: "SEDG Cell", href: "/committees#sedg" },
     { label: "Facilities for differently-abled persons", href: null },
   ] },
-  { id: "alumni", letter: "g", title: "Alumni", items: [{ label: "Alumni association", href: null }] },
+  { id: "alumni", letter: "g", title: "Alumni", items: [{ label: "Alumni of the College of Pharmacy (alumni meet)", href: "/student-life#alumni" }, { label: "Alumni association registration and office-bearers", href: null }] },
   { id: "information", letter: "h", title: "Information Corner", items: [
     { label: "RTI: CPIO and Appellate Authority", href: "/notices#rti" },
     { label: "Circulars and notices", href: "/notices#notices" },
@@ -199,11 +195,11 @@ export const DISCLOSURE: DiscSection[] = [
     { label: "Job openings", href: "/notices#careers" },
     { label: "Reservation roster", href: null },
   ] },
-  { id: "gallery", letter: "i", title: "Picture Gallery", items: [{ label: "Photographs of campus and events", href: "/gallery" }] },
+  { id: "gallery", letter: "i", title: "Picture Gallery", items: [{ label: "Photographs of campus, library, events, sports, placements and NSS", href: "/gallery" }] },
   { id: "contact", letter: "j", title: "Contact", items: [
     { label: "Phone, official email and address", href: "/contact#contact" },
     { label: "Location map", href: "/contact#map" },
-    { label: "Telephone directory", href: "/contact#directory" },
+    { label: "Telephone directory (incl. College of Pharmacy numbers)", href: "/contact#directory" },
   ] },
 ];
 
@@ -259,5 +255,6 @@ export const SEARCH_INDEX: SearchEntry[] = [
   ...INSTITUTIONS.flatMap((i) => i.groups.flatMap((g) => g.items.map((p) => ({ group: "Programmes", label: p.name, href: `${i.href}#programmes`, keywords: i.short })))),
   ...COMMITTEES.map((c) => ({ group: "Committees", label: c.name, href: `/committees#${c.id}` })),
   ...DISCLOSURE.flatMap((s) => s.items.map((d) => ({ group: "Disclosure", label: `${s.letter.toUpperCase()}. ${d.label}`, href: d.href ?? `/disclosure#${s.id}`, keywords: s.title }))),
+  ...PEOPLE.map((p) => ({ group: "People", label: p.name === "To be published" ? `${p.role}, College of Pharmacy` : p.name, href: p.group === "alumni" ? "/student-life#alumni" : p.group === "hod" ? "/administration#hods" : "/administration#leadership", keywords: `${p.role} ${p.institution}` })),
   ...NEWS.map((n) => ({ group: "Notices and News", label: n.title, href: "/notices#news", keywords: `${n.tag} ${n.date}` })),
 ];
