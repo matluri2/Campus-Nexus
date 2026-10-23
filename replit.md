@@ -1,6 +1,12 @@
-# [Project name]
+# A.M. Reddy Educational Institutions
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Official multi-page website for A.M. Reddy Educational Institutions (Narasaraopet, A.P.), covering the A.M. Reddy Memorial College of Pharmacy, the A.M. Reddy Memorial College of Engineering and Technology, and the Polytechnic (diploma) wing.
+
+## Content rules
+
+- Official names: group "A.M. Reddy Educational Institutions"; "A.M. Reddy Memorial College of Pharmacy"; "A.M. Reddy Memorial College of Engineering and Technology"; Polytechnic = diploma programs under the engineering college.
+- Facts come only from amr.edu.in and amreddypharmacy.co.in (pharmacy site is for information only). Do not invent statistics, rankings, or placement figures.
+- Website is frontend-only (`artifacts/college-website`); the admission enquiry form currently only confirms on screen and does not send data anywhere.
 
 ## Run & Operate
 

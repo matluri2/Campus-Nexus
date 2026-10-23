@@ -3,41 +3,32 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import NotFound from '@/pages/not-found';
-import {
-  Route,
-  Switch,
-  useLocation,
-  Router as WouterRouter,
-} from 'wouter';
+import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import { Layout } from '@/components/site';
+import Home from '@/pages/home';
+import Admissions from '@/pages/admissions';
+import { Pharmacy, Engineering, Polytechnic } from '@/pages/programs';
+import { CampusLife, About, Contact, NotFoundPage } from '@/pages/info';
 
 const queryClient = new QueryClient();
 
-function Home() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Replit Agent is building...
-        </h1>
-        <p className="mt-2 text-sm text-gray-600">
-          Your app will appear here once it's ready.
-        </p>
-      </div>
-    </div>
-  );
-}
-
 function Router() {
   return (
-    // Keep a shared shell (sidebar, navbar) outside the boundary so it
-    // survives a page crash.
-    <RoutedErrorBoundary>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route component={NotFound} />
-      </Switch>
-    </RoutedErrorBoundary>
+    <Layout>
+      <RoutedErrorBoundary>
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/pharmacy" component={Pharmacy} />
+          <Route path="/engineering" component={Engineering} />
+          <Route path="/polytechnic" component={Polytechnic} />
+          <Route path="/admissions" component={Admissions} />
+          <Route path="/campus-life" component={CampusLife} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </RoutedErrorBoundary>
+    </Layout>
   );
 }
 
