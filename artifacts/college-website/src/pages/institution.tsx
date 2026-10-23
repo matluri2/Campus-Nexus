@@ -14,11 +14,17 @@ const WING: Record<Institution["key"], { accent: string; hero: string; img2: str
   polytechnic: { accent: "222 38% 34%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
 };
 
+const FACILITIES: Record<Institution["key"], string[]> = {
+  pharmacy: ["Dedicated pharmacy library", "Laboratories for pharmaceutics, pharmacology and pharmaceutical analysis", "Academic MoUs with institutions abroad", "Separate hostels for boys and girls", "Fleet of college buses", "Placement training and pool campus drives"],
+  engineering: ["Six CSE laboratories with 368 air-conditioned systems", "Incubation centre (Department of CSE)", "Central library", "Separate hostels for boys and girls", "Fleet of college buses", "Auditorium and outdoor sports grounds"],
+  polytechnic: ["Workshops and laboratories of the College of Engineering and Technology", "Central library", "Pathway to lateral entry into B.Tech", "Separate hostels for boys and girls", "Fleet of college buses", "Outdoor sports grounds"],
+};
+
 function InstitutionPage({ ins }: { ins: Institution }) {
   const w = WING[ins.key];
   const pr = principalOf(ins.key);
   const hods = hodsOf(ins.key);
-  const nav: [string, string][] = [["overview", "Overview"], ["programmes", "Programmes"], ...(hods.length ? [["people", "Heads of Department"] as [string, string]] : []), ...(ins.key === "engineering" ? [["vision", "Vision and Mission"] as [string, string]] : ins.key === "pharmacy" ? [["highlights", "Highlights"] as [string, string]] : [["training", "Training"] as [string, string]])];
+  const nav: [string, string][] = [["overview", "Overview"], ["programmes", "Programmes"], ["facilities", "Facilities"], ...(hods.length ? [["people", "Heads of Department"] as [string, string]] : []), ...(ins.key === "engineering" ? [["vision", "Vision and Mission"] as [string, string]] : ins.key === "pharmacy" ? [["highlights", "Highlights"] as [string, string]] : [["training", "Training"] as [string, string]])];
   const total = ins.groups.reduce((n, g) => n + g.items.length, 0);
   return (
     <div style={{ ["--wing" as string]: w.accent } as React.CSSProperties}>
@@ -67,6 +73,13 @@ function InstitutionPage({ ins }: { ins: Institution }) {
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          <div id="facilities" className="scroll-mt-36 mt-16">
+            <SectionTitle eyebrow="Facilities" title="Facilities and infrastructure" />
+            <ul className="grid sm:grid-cols-2 gap-x-10">
+              {FACILITIES[ins.key].map((f) => <li key={f} className="flex gap-3 py-3.5 border-b text-[15px]"><CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "hsl(var(--wing))" }} />{f}</li>)}
+            </ul>
           </div>
 
           {hods.length > 0 && (

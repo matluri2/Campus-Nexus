@@ -62,3 +62,22 @@ export const ACCREDITATION_LOGOS: { src: string; alt: string }[] = [
   { src: A("eng-naac.png"), alt: "NAAC" }, { src: A("eng-nba.png"), alt: "NBA" }, { src: A("eng-ugc.png"), alt: "UGC" },
   { src: A("eng-iso.jpg"), alt: "ISO 9001:2015" }, { src: A("eng-msme.png"), alt: "MSME" },
 ];
+
+/*
+ * HOME HERO SLIDESHOW — the full-screen slides at the top of the home page.
+ *
+ * Each slide needs an `img` (an IMG.* slot) and a short `caption`.
+ * To use a VIDEO for a slide later:
+ *   1. put the file in public/video/ (for example public/video/campus.mp4; keep it short, muted-friendly, under ~10 MB)
+ *   2. add   video: "video/campus.mp4"   to that slide.
+ * The image is then used as the video's poster (shown while loading, and to
+ * visitors who prefer reduced motion). Slides are shown in the order listed.
+ */
+export type HeroSlide = { img: string; video?: string; caption: string; sub: string; cta: { label: string; href: string } };
+export const HERO_SLIDES: HeroSlide[] = [
+  { img: IMG.campusAerial, caption: "One campus. Three institutions.", sub: "Pharmacy, engineering and diploma education at Petlurivaripalem, Narasaraopet.", cta: { label: "Admissions 2026", href: "/admissions" } },
+  { img: IMG.labPresentation, caption: "Learning by doing.", sub: "Laboratories, incubation and hands-on projects.", cta: { label: "College of Engineering", href: "/engineering" } },
+  { img: IMG.pharmacyEvent, caption: "Pharmaceutical sciences since 2004.", sub: "A.M. Reddy Memorial College of Pharmacy.", cta: { label: "College of Pharmacy", href: "/pharmacy" } },
+  { img: IMG.sankranthi, caption: "A campus that celebrates together.", sub: "Festivals, sports and NSS outreach.", cta: { label: "Campus life", href: "/student-life" } },
+  { img: IMG.placementThinksysq, caption: "From campus to career.", sub: "Training and campus recruitment drives.", cta: { label: "Placements", href: "/student-life#placements" } },
+];

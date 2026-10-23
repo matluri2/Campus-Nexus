@@ -8,7 +8,10 @@ description: Owner's stated visual and compliance expectations for the AMR colle
   - Cinematic editorial version: fonts too big. Keep the type scale small.
   - Navy + saffron with a full-bleed slider hero, utility bar, ticker, quick-link cards, stats strip and mega-menu: "an exact copy of chalapathi". The owner wants a modern layout that does not look like other university sites. The chalapathiuniversity.edu.in reference is only loose inspiration, never a template.
   - "On campus now" noticeboard version (rounded panels everywhere, mono labels, pill filters, graph-paper background, floating help chip): "started looking like an ERP based portal". The owner wants a professional modern *website* with proper navigation tabs, not a dashboard.
-- Announcements and events must be visible at the very top of the home page, not buried.
+  - Pine/ivory editorial version: "started looking like generic canva slides". It needs to feel genuinely modern, not flat static sections.
+- The home page must open with a full-width image/video slideshow, like other university sites. Announcements and events come right after it, not inside the hero.
+- College-specific details (programmes, intake, approvals, figures) belong only on each college's page, not on the home page.
+- Only the chairperson appears on the home page; other leaders, principals and HoDs go on inner pages.
 - The site must follow the UGC Guidelines on Public Self-Disclosure by HEIs (2024). That means a site-wide search, no login walls, and a /disclosure page covering sections a–j.
 - Use only a minimal set of real photos, because the owner will edit them later. All photo paths are kept in one named-slot file.
 

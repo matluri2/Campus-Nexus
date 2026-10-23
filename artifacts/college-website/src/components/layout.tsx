@@ -125,7 +125,7 @@ const OWNS: Record<string, string[]> = {
   "Campus Life": ["/student-life", "/campus-life", "/committees", "/gallery"],
   Information: ["/notices", "/disclosure"],
 };
-function DesktopNav() {
+function DesktopNav({ light }: { light?: boolean }) {
   const [open, setOpen] = useState<string | null>(null);
   const [loc] = useLocation();
   const t = useRef<number | undefined>(undefined);
@@ -140,7 +140,7 @@ function DesktopNav() {
           const isOpen = open === m.label;
           return (
             <li key={m.label} className="h-full flex items-center" onMouseEnter={() => enter(m.label)} onMouseLeave={leave}>
-              <button onClick={() => setOpen(isOpen ? null : m.label)} aria-expanded={isOpen} className={`relative h-full px-3.5 inline-flex items-center gap-1 text-[14px] font-semibold whitespace-nowrap transition-colors ${active || isOpen ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid={`button-nav-${slug(m.label)}`}>
+              <button onClick={() => setOpen(isOpen ? null : m.label)} aria-expanded={isOpen} className={`relative h-full px-3.5 inline-flex items-center gap-1 text-[14px] font-semibold whitespace-nowrap transition-colors ${light ? (active || isOpen ? "text-white" : "text-white/85 hover:text-white") : active || isOpen ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid={`button-nav-${slug(m.label)}`}>
                 {m.label}<ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                 <span aria-hidden className={`absolute left-3.5 right-3.5 bottom-0 h-[2px] bg-[hsl(var(--lagoon))] origin-left transition-transform duration-300 ${active || isOpen ? "scale-x-100" : "scale-x-0"}`} />
               </button>
@@ -179,7 +179,7 @@ function DesktopNav() {
             </li>
           );
         })}
-        <li className="h-full flex items-center"><Link href="/contact" className={`h-full px-3.5 inline-flex items-center text-[14px] font-semibold ${loc === "/contact" ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid="link-nav-contact">Contact</Link></li>
+        <li className="h-full flex items-center"><Link href="/contact" className={`h-full px-3.5 inline-flex items-center text-[14px] font-semibold ${light ? "text-white/85 hover:text-white" : loc === "/contact" ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid="link-nav-contact">Contact</Link></li>
       </ul>
     </nav>
   );
@@ -242,13 +242,16 @@ function Header() {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setSearch((s) => !s); }
       if (e.key === "Escape") setMenu(false);
     };
-    const s = () => setScrolled(window.scrollY > 40);
+    const s = () => setScrolled(window.scrollY > 60);
     window.addEventListener("keydown", k); window.addEventListener("scroll", s, { passive: true });
     return () => { window.removeEventListener("keydown", k); window.removeEventListener("scroll", s); };
   }, []);
+  const home = loc === "/";
+  const clear = home && !scrolled && !menu;
   return (
     <>
-      <div className="bg-[hsl(var(--teal-deep))] text-white/80 text-[12px]">
+      <div className={home ? "fixed inset-x-0 top-0 z-50" : "contents"}>
+      <div className={`text-white/80 text-[12px] transition-colors duration-500 ${clear ? "bg-[hsl(var(--ink)/0.25)] backdrop-blur-sm" : "bg-[hsl(var(--teal-deep))]"}`}>
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 h-9 flex items-center justify-between gap-4">
           <ul className="flex items-center gap-4 sm:gap-5 overflow-x-auto no-scrollbar whitespace-nowrap">
             {STATUTORY.slice(0, 3).map((s, i) => <li key={s.href}><Link href={s.href} className="hover:text-white font-medium" data-testid={`link-util-${slug(s.label)}`}>{i === 0 ? <><span className="sm:hidden">UGC Disclosure</span><span className="hidden sm:inline">{s.label}</span></> : s.label}</Link></li>)}
@@ -260,17 +263,18 @@ function Header() {
           </div>
         </div>
       </div>
-      <header className={`sticky top-0 z-50 bg-[hsl(var(--paper)/0.94)] backdrop-blur-md border-b transition-shadow ${scrolled ? "shadow-[0_10px_30px_-24px_hsl(var(--ink)/0.5)]" : ""}`}>
+      <header className={`${home ? "" : "sticky top-0"} z-50 transition-[background-color,box-shadow,border-color] duration-500 border-b ${clear ? "bg-transparent border-white/15" : "bg-[hsl(var(--paper)/0.94)] backdrop-blur-md"} ${scrolled ? "shadow-[0_10px_30px_-20px_hsl(var(--ink)/0.45)]" : ""}`}>
         <div className="relative max-w-[1280px] mx-auto px-4 sm:px-8 h-[68px] flex items-center justify-between gap-4">
-          <Brand />
-          <DesktopNav />
+          <Brand light={clear} />
+          <DesktopNav light={clear} />
           <div className="flex items-center gap-1 shrink-0">
-            <button onClick={() => setSearch(true)} className="h-10 w-10 grid place-items-center text-foreground/70 hover:text-[hsl(var(--pine))]" aria-label="Search the website" data-testid="button-header-search"><Search className="w-[18px] h-[18px]" /></button>
+            <button onClick={() => setSearch(true)} className={`h-10 w-10 grid place-items-center ${clear ? "text-white" : "text-foreground/70 hover:text-[hsl(var(--pine))]"}`} aria-label="Search the website" data-testid="button-header-search"><Search className="w-[18px] h-[18px]" /></button>
             <Link href="/admissions#enquire" className="hidden sm:inline-flex h-10 px-5 items-center bg-[hsl(var(--pine))] text-white text-[13.5px] font-semibold hover:bg-[hsl(var(--lagoon))] transition-colors whitespace-nowrap" data-testid="link-header-enquire">Apply 2026</Link>
-            <button onClick={() => setMenu(true)} className="xl:hidden h-10 w-10 grid place-items-center" aria-label="Open menu" aria-expanded={menu} data-testid="button-mobile-menu"><Menu className="w-5 h-5" /></button>
+            <button onClick={() => setMenu(true)} className={`xl:hidden h-10 w-10 grid place-items-center ${clear ? "text-white" : ""}`} aria-label="Open menu" aria-expanded={menu} data-testid="button-mobile-menu"><Menu className="w-5 h-5" /></button>
           </div>
         </div>
       </header>
+      </div>
       <MobileMenu open={menu} setOpen={setMenu} onSearch={() => setSearch(true)} />
       <SearchDialog open={search} setOpen={setSearch} />
     </>
