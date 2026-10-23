@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "College Website"
+description = "A welcoming institutional website for a college with Pharmacy, Engineering, and Polytechnic schools, featuring program information, admissions guidance, campus life, and contact details."
+version = "1.0.0"
+id = "artifacts/college-website"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22951
+
+[services.development]
+run = "pnpm --filter @workspace/college-website run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/college-website", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/college-website/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22951"
+BASE_PATH = "/"
