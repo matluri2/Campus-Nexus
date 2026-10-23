@@ -1,1 +1,1 @@
-- [Design direction](design-direction.md) — owner rejected the old-AMR maroon/gold look; keep the site boldly modern.
+- [Design direction](design-direction.md) — must look professional/institutional (not old maroon, not playful) and follow UGC 2024 self-disclosure guidelines.

@@ -1,8 +1,10 @@
 ---
 name: Website design direction
-description: Owner's stated visual expectations for the AMR college website
+description: Owner's stated visual and compliance expectations for the AMR college website
 ---
-The owner rejected a design that kept the old AMR maroon/gold, news-ticker, traditional-college look as "too similar to the old AMR websites". They want a very modern, striking interface that amazes visitors.
+- The owner rejected the old-AMR maroon/gold, news-ticker look as "too similar to the old AMR websites".
+- The owner then rejected a playful, agency-style redesign (navy + lime, rotating headline, grain, bento cards) as "not professional for a university website".
+- The site must follow the UGC Guidelines on Public Self-Disclosure by HEIs (2024). That means a site-wide search, no login walls, and a /disclosure page covering sections a–j.
 
-**Why:** the user asked for a complete redesign on that basis.
-**How to apply:** do not drift back toward maroon/gold or typical Indian-college layouts when editing; keep the current modern direction (ink navy, lime, per-wing colours) unless the user asks otherwise.
+**Why:** the user said so after each rejected version.
+**How to apply:** keep the formal, modern institutional style (teal, serif headings, structured tables). Don't add gimmicky motion or playful copy. Unknown statutory details show "To be published"; never invent them.

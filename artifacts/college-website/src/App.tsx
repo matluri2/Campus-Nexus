@@ -4,11 +4,12 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
-import { Layout } from '@/components/site';
+import { Layout } from '@/components/layout';
 import Home from '@/pages/home';
 import Admissions from '@/pages/admissions';
-import { Pharmacy, Engineering, Polytechnic } from '@/pages/programs';
-import { CampusLife, About, Contact, NotFoundPage } from '@/pages/info';
+import Disclosure from '@/pages/disclosure';
+import { Pharmacy, Engineering, Polytechnic } from '@/pages/institution';
+import { About, Administration, Research, StudentLife, Committees, Notices, Gallery, Contact, NotFoundPage } from '@/pages/info';
 
 const queryClient = new QueryClient();
 
@@ -22,8 +23,15 @@ function Router() {
           <Route path="/engineering" component={Engineering} />
           <Route path="/polytechnic" component={Polytechnic} />
           <Route path="/admissions" component={Admissions} />
-          <Route path="/campus-life" component={CampusLife} />
           <Route path="/about" component={About} />
+          <Route path="/administration" component={Administration} />
+          <Route path="/research" component={Research} />
+          <Route path="/student-life" component={StudentLife} />
+          <Route path="/campus-life" component={StudentLife} />
+          <Route path="/committees" component={Committees} />
+          <Route path="/notices" component={Notices} />
+          <Route path="/gallery" component={Gallery} />
+          <Route path="/disclosure" component={Disclosure} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFoundPage} />
         </Switch>

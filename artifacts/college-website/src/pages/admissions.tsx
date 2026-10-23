@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Phone } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { SectionHead, Reveal, SplitHead, Eyebrow, PHONE, PHONE_TEL, EASE } from "@/components/site";
+import { Container, PageHeader, Reveal, SectionTitle, ToBePublished } from "@/components/layout";
+import { PHONE, PHONE_TEL, INSTITUTIONS } from "@/data/site";
 
-const COURSES: Record<string, { college: string; color: string; branches: string[] }> = {
-  "B.Tech": { college: "Engineering", color: "var(--eng)", branches: ["Civil Engineering", "Electrical and Electronics Engineering", "Electronics and Communication Engineering", "Computer Science and Engineering", "CSE (Cyber Security)", "CSE (AI and ML)", "CSE (Data Science)", "Robotics and Artificial Intelligence", "Agricultural Engineering"] },
-  "M.Tech": { college: "Engineering", color: "var(--eng)", branches: ["Structural Design", "Transportation Engineering"] },
-  "Diploma": { college: "Polytechnic", color: "var(--poly)", branches: ["Civil Engineering", "Electrical Engineering", "Mechanical Engineering", "Electronics and Communication Engineering", "Computer Science and Engineering", "Cloud Computing and Big Data"] },
-  "B.Pharm": { college: "Pharmacy", color: "var(--pharm)", branches: ["B.Pharm"] },
-  "Pharm.D": { college: "Pharmacy", color: "var(--pharm)", branches: ["Pharm.D"] },
-  "M.Pharm": { college: "Pharmacy", color: "var(--pharm)", branches: ["Pharmaceutics", "Pharmacology", "Pharmaceutical Analysis", "Regulatory Affairs"] },
+const COURSES: Record<string, { college: string; branches: string[] }> = {
+  "B.Tech": { college: "Engineering", branches: ["Civil Engineering", "Electrical and Electronics Engineering", "Electronics and Communication Engineering", "Computer Science and Engineering", "CSE (Cyber Security)", "CSE (AI and ML)", "CSE (Data Science)", "Robotics and Artificial Intelligence", "Agricultural Engineering"] },
+  "M.Tech": { college: "Engineering", branches: ["Structural Design", "Transportation Engineering"] },
+  "Diploma": { college: "Polytechnic", branches: ["Civil Engineering", "Electrical Engineering", "Mechanical Engineering", "Electronics and Communication Engineering", "Computer Science and Engineering", "Cloud Computing and Big Data"] },
+  "B.Pharm": { college: "Pharmacy", branches: ["B.Pharm"] },
+  "Pharm.D": { college: "Pharmacy", branches: ["Pharm.D"] },
+  "M.Pharm": { college: "Pharmacy", branches: ["Pharmaceutics", "Pharmacology", "Pharmaceutical Analysis", "Regulatory Affairs"] },
 };
 
 const marks = z.string().trim().min(1, "Required").refine((v) => !isNaN(Number(v)) && Number(v) >= 0 && Number(v) <= 1000, "Enter marks, percentage or GPA");
@@ -36,47 +36,36 @@ const schema = z.object({
 type Values = z.infer<typeof schema>;
 const defaults: Values = { course: "", branch: "", studentName: "", fatherName: "", phone: "", tenthMarks: "", interMarks: "", address: "", village: "", mandal: "", district: "Palnadu" };
 
-const FORM_STEPS: { title: string; fields: (keyof Values)[] }[] = [
-  { title: "Program", fields: ["course", "branch"] },
-  { title: "Student", fields: ["studentName", "fatherName", "phone"] },
-  { title: "Marks", fields: ["tenthMarks", "interMarks"] },
+const STEPS: { title: string; fields: (keyof Values)[] }[] = [
+  { title: "Programme", fields: ["course", "branch"] },
+  { title: "Applicant", fields: ["studentName", "fatherName", "phone"] },
+  { title: "Academic record", fields: ["tenthMarks", "interMarks"] },
   { title: "Address", fields: ["village", "mandal", "district", "address"] },
 ];
 
-const PROCESS = [["Enquire", "Submit the form below or call the office."], ["Counselling", "Our admissions team calls you to discuss eligibility, branch and fees."], ["Visit", "Tour the campus at Petlurivaripalem with your family."], ["Enrol", "Complete documents and confirm your seat."]];
-const PC = ["var(--lime)", "var(--pharm)", "var(--eng)", "var(--poly)"];
+const PROCESS = [["Enquiry", "Submit the enquiry form or contact the admissions office by phone."], ["Counselling", "The admissions team discusses eligibility, programme choice and fees with the applicant and family."], ["Campus visit", "Applicants are welcome to visit the campus at Petlurivaripalem."], ["Admission", "Seats are allotted through state counselling (convener quota) or as per regulations for management quota, followed by document verification."]];
 
 export default function Admissions() {
   const { toast } = useToast();
   const [done, setDone] = useState<Values | null>(null);
   const [step, setStep] = useState(0);
-  const [dir, setDir] = useState(1);
   const form = useForm<Values>({ resolver: zodResolver(schema), defaultValues: defaults });
   const course = form.watch("course");
   const branch = form.watch("branch");
 
-  useEffect(() => {
-    if (window.location.hash === "#enquire") setTimeout(() => document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth" }), 400);
-  }, []);
-
-  const next = async () => {
-    const ok = await form.trigger(FORM_STEPS[step].fields);
-    if (ok) { setDir(1); setStep((s) => s + 1); }
-  };
-  const back = () => { setDir(-1); setStep((s) => Math.max(0, s - 1)); };
-
+  const next = async () => { if (await form.trigger(STEPS[step].fields)) setStep((s) => s + 1); };
+  const back = () => setStep((s) => Math.max(0, s - 1));
   const onSubmit = (v: Values) => {
     setDone(v);
-    toast({ title: "Enquiry received", description: `Thank you, ${v.studentName}. The admissions office will follow up on ${v.phone}.` });
-    form.reset(defaults);
-    setStep(0);
+    toast({ title: "Enquiry recorded", description: `Thank you, ${v.studentName}. The admissions office will contact you on ${v.phone}.` });
+    form.reset(defaults); setStep(0);
   };
 
-  const field = (name: keyof Values, label: string, ph = "", type = "text") => (
+  const field = (name: keyof Values, label: string, ph = "", type = "text", req = true) => (
     <FormField control={form.control} name={name} render={({ field: f }) => (
       <FormItem>
-        <FormLabel className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{label}</FormLabel>
-        <FormControl><Input type={type} placeholder={ph} {...f} value={f.value ?? ""} className="h-14 rounded-2xl bg-background border-[hsl(var(--ink)/0.15)] text-lg px-5 focus-visible:ring-[hsl(var(--lime))] focus-visible:ring-offset-0 focus-visible:ring-4" data-testid={`input-${name}`} /></FormControl>
+        <FormLabel className="text-[13px] font-semibold">{label}{req && <span className="text-[hsl(var(--accent))]"> *</span>}</FormLabel>
+        <FormControl><Input type={type} placeholder={ph} {...f} value={f.value ?? ""} className="h-11 rounded-sm bg-background" data-testid={`input-${name}`} /></FormControl>
         <FormMessage />
       </FormItem>
     )} />
@@ -84,121 +73,130 @@ export default function Admissions() {
 
   return (
     <>
-      <section className="relative pt-28 md:pt-36 overflow-hidden">
-        <div className="absolute inset-0 gridlines [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" aria-hidden />
-        <div className="relative max-w-7xl mx-auto px-6">
-          <Eyebrow>Admissions</Eyebrow>
-          <h1 className="font-display text-[2.8rem] leading-[0.92] sm:text-7xl md:text-[7rem] mt-6 tracking-[-0.06em]"><SplitHead text="Start here." /><br /><span className="text-muted-foreground/60"><SplitHead text="We'll guide the rest." delay={0.2} /></span></h1>
-          <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl">Pharmacy, engineering and diploma programs on one campus. Tell us what you are interested in and we will call you back.</p>
-        </div>
-      </section>
+      <PageHeader img="img/campus.jpg" eyebrow="Admissions 2026" title="Admissions" sub="Undergraduate, postgraduate and diploma programmes in pharmacy, engineering and technology." crumbs={[["Admissions"]]} />
 
-      <section className="max-w-7xl mx-auto px-6 mt-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <Container className="mt-16">
+        <SectionTitle id="process" eyebrow="Procedure" title="Admission process" />
+        <ol className="grid md:grid-cols-4 border rounded-md bg-card divide-y md:divide-y-0 md:divide-x">
           {PROCESS.map(([t, d], i) => (
-            <Reveal key={t} delay={i * 0.08}>
-              <div className="relative h-full rounded-[1.75rem] bg-card border p-6 overflow-hidden" data-testid={`card-step-${i}`}>
-                <div className="absolute -right-3 -top-6 font-display text-[7rem] leading-none text-[hsl(var(--ink)/0.05)]">{i + 1}</div>
-                <span className="block w-3 h-3 rounded-full" style={{ background: `hsl(${PC[i]})` }} />
-                <div className="font-display text-3xl mt-10">{t}</div><p className="text-sm text-muted-foreground mt-2">{d}</p>
-              </div>
-            </Reveal>
+            <li key={t} className="p-6" data-testid={`card-step-${i}`}>
+              <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground grid place-items-center text-[13px] font-semibold">{i + 1}</span>
+              <div className="font-semibold mt-4">{t}</div>
+              <p className="text-[14px] text-muted-foreground mt-1.5 leading-relaxed">{d}</p>
+            </li>
+          ))}
+        </ol>
+      </Container>
+
+      <Container className="mt-20">
+        <SectionTitle id="programmes" eyebrow="Programmes" title="Programmes offered" />
+        <div className="grid lg:grid-cols-3 gap-px bg-border border rounded-md overflow-hidden">
+          {INSTITUTIONS.map((ins) => (
+            <div key={ins.key} className="bg-card p-6" data-testid={`card-college-${ins.key}`}>
+              <div className="font-display text-xl text-[hsl(var(--primary))]">{ins.short}</div>
+              <div className="text-[12px] text-muted-foreground mt-1">{ins.affiliation}</div>
+              {ins.groups.map((g) => (
+                <div key={g.title} className="mt-5 pt-4 border-t">
+                  <div className="text-[12px] font-semibold uppercase tracking-wider text-[hsl(var(--accent))]">{g.title}</div>
+                  <ul className="mt-2 space-y-1 text-[14px]">{g.items.map((p) => <li key={p.name}>{p.name}{p.intake && <span className="text-muted-foreground"> ({p.intake})</span>}</li>)}</ul>
+                </div>
+              ))}
+            </div>
           ))}
         </div>
-      </section>
+      </Container>
 
-      <section id="enquire" className="mt-24 px-3 sm:px-5 scroll-mt-24">
-        <div className="max-w-7xl mx-auto rounded-[2.5rem] bg-[hsl(var(--ink))] p-3 md:p-4 grid lg:grid-cols-[0.8fr_1.2fr] gap-3">
-          <div className="text-white p-6 md:p-10 flex flex-col">
-            <Eyebrow light>Admission enquiry</Eyebrow>
-            <h2 className="font-display text-4xl md:text-6xl mt-4 leading-[0.95]">Two minutes.<br /><span className="text-[hsl(var(--lime))]">Four steps.</span></h2>
-            <p className="text-white/55 mt-4 max-w-sm">The admissions office will call you back. Nothing here confirms admission.</p>
-            <ol className="mt-10 space-y-1 hidden lg:block">
-              {FORM_STEPS.map((s, i) => (
-                <li key={s.title} className={`flex items-center gap-4 py-2 transition-opacity ${i === step && !done ? "opacity-100" : "opacity-40"}`}>
-                  <span className={`w-8 h-8 rounded-full grid place-items-center text-xs font-mono border ${i < step || done ? "bg-[hsl(var(--lime))] text-[hsl(var(--ink))] border-transparent" : "border-white/30"}`}>{i < step || done ? <Check className="w-4 h-4" /> : i + 1}</span>
-                  <span className="font-display text-xl">{s.title}</span>
+      <Container className="mt-20">
+        <SectionTitle id="fee" eyebrow="Eligibility and Fee" title="Eligibility, fee structure and refund policy" sub="Eligibility follows the norms of APSCHE, the affiliating university and the respective regulatory council (AICTE / PCI). Fees are as fixed by the Andhra Pradesh Higher Education Regulatory and Monitoring Commission." />
+        <div className="border rounded-md bg-card divide-y">
+          {[["Prospectus with fee structure", "prospectus"], ["Fee refund policy", "refund"], ["Programme-wise eligibility criteria", "eligibility"]].map(([l, k]) => (
+            <div key={k} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4"><span className="font-medium">{l}</span><ToBePublished testid={`status-${k}`} /></div>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="mt-20">
+        <div id="enquire" className="scroll-mt-36 grid lg:grid-cols-[320px_1fr] border rounded-md overflow-hidden bg-card">
+          <div className="bg-[hsl(var(--teal))] text-white p-7 flex flex-col">
+            <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(14_70%_78%)]">Admission Enquiry</div>
+            <h2 className="font-display text-2xl mt-2">Request a call from the admissions office</h2>
+            <ol className="mt-8 space-y-3">
+              {STEPS.map((s, i) => (
+                <li key={s.title} className={`flex items-center gap-3 text-[14px] ${i === step && !done ? "text-white" : "text-white/55"}`}>
+                  <span className={`w-7 h-7 rounded-full grid place-items-center text-[12px] border ${i < step || done ? "bg-white text-[hsl(var(--primary))] border-white" : i === step ? "border-white" : "border-white/40"}`}>{i < step || done ? <Check className="w-3.5 h-3.5" /> : i + 1}</span>{s.title}
                 </li>
               ))}
             </ol>
-            <div className="mt-auto pt-10 text-sm text-white/55">Prefer to talk? <a href={PHONE_TEL} className="text-[hsl(var(--lime))] font-semibold" data-testid="link-form-call">{PHONE}</a></div>
+            <div className="mt-auto pt-10 text-[14px] text-white/75">Prefer to speak directly?<a href={PHONE_TEL} className="flex items-center gap-2 mt-1 font-semibold text-white" data-testid="link-form-call"><Phone className="w-4 h-4" />{PHONE}</a></div>
           </div>
-
-          <div className="rounded-[2rem] bg-background p-6 md:p-10 min-h-[540px] flex flex-col">
+          <div className="p-6 md:p-10 min-h-[480px] flex flex-col">
             {done ? (
-              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="m-auto text-center py-6" data-testid="status-enquiry-success">
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.1 }} className="w-24 h-24 rounded-full bg-[hsl(var(--lime))] mx-auto grid place-items-center"><Check className="w-12 h-12" strokeWidth={2.5} /></motion.div>
-                <h2 className="font-display text-4xl md:text-5xl mt-8">Thank you, {done.studentName}.</h2>
-                <p className="text-muted-foreground mt-4 max-w-lg mx-auto">Your enquiry for {done.course} ({done.branch}) is noted. The admissions office will follow up on {done.phone}. For anything urgent, call <a href={PHONE_TEL} className="text-foreground font-semibold underline decoration-[hsl(var(--lime))] decoration-2 underline-offset-4">{PHONE}</a>.</p>
-                <p className="text-xs text-muted-foreground mt-4">This form does not reserve a seat; final admission follows counselling and document verification.</p>
-                <button onClick={() => setDone(null)} className="mt-8 rounded-full bg-[hsl(var(--ink))] text-white px-7 py-4 font-semibold" data-testid="button-new-enquiry">Submit another enquiry</button>
-              </motion.div>
+              <div className="m-auto text-center max-w-lg" role="status" data-testid="status-enquiry-success">
+                <span className="w-14 h-14 rounded-full bg-primary text-primary-foreground grid place-items-center mx-auto"><Check className="w-7 h-7" /></span>
+                <h3 className="font-display text-2xl mt-5">Thank you, {done.studentName}.</h3>
+                <p className="text-muted-foreground mt-3">Your enquiry for {done.course} ({done.branch}) has been noted on this page. Please contact the admissions office at <a href={PHONE_TEL} className="text-foreground font-semibold underline">{PHONE}</a> to complete your enquiry.</p>
+                <p className="text-[12px] text-muted-foreground mt-3">This form does not reserve a seat. Admission is subject to counselling and verification of documents.</p>
+                <button onClick={() => setDone(null)} className="mt-6 h-11 px-6 rounded-sm bg-primary text-primary-foreground font-semibold" data-testid="button-new-enquiry">Submit another enquiry</button>
+              </div>
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col flex-1" noValidate>
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-muted-foreground">Step {step + 1} of 4 / {FORM_STEPS[step].title}</span>
-                    <div className="flex gap-1.5">{FORM_STEPS.map((_, i) => <span key={i} className="h-1.5 w-8 rounded-full bg-[hsl(var(--ink)/0.1)] overflow-hidden"><motion.span className="block h-full bg-[hsl(var(--ink))]" animate={{ width: i <= step ? "100%" : "0%" }} transition={{ duration: 0.5, ease: EASE }} /></span>)}</div>
+                  <div className="flex items-center justify-between text-[13px] text-muted-foreground">
+                    <span>Step {step + 1} of 4: <span className="text-foreground font-semibold">{STEPS[step].title}</span></span>
+                    <div className="h-1 w-32 bg-muted rounded-full overflow-hidden"><div className="h-full bg-primary transition-transform duration-500 origin-left" style={{ transform: `scaleX(${(step + 1) / 4})` }} /></div>
                   </div>
-                  <div className="relative flex-1 mt-8">
-                    <AnimatePresence mode="wait" custom={dir}>
-                      <motion.div key={step} custom={dir} initial={{ opacity: 0, x: dir * 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: dir * -40 }} transition={{ duration: 0.4, ease: EASE }} className="space-y-6">
-                        {step === 0 && (
-                          <>
-                            <FormField control={form.control} name="course" render={({ field: f }) => (
-                              <FormItem>
-                                <FormLabel className="font-display text-2xl text-foreground">Which course interests you?</FormLabel>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
-                                  {Object.entries(COURSES).map(([k, v]) => (
-                                    <button type="button" key={k} onClick={() => { f.onChange(k); form.setValue("branch", v.branches.length === 1 ? v.branches[0] : ""); form.clearErrors("course"); }}
-                                      className={`relative text-left rounded-2xl border p-4 transition-all ${f.value === k ? "border-transparent text-[hsl(var(--ink))] scale-[1.02]" : "border-[hsl(var(--ink)/0.15)] hover:border-[hsl(var(--ink)/0.4)]"}`}
-                                      style={f.value === k ? { background: `hsl(${v.color} / 0.3)`, boxShadow: `inset 0 0 0 2px hsl(${v.color})` } : undefined} data-testid={`option-course-${k}`}>
-                                      <span className="block font-display text-xl">{k}</span>
-                                      <span className="block text-xs text-muted-foreground mt-0.5">{v.college}</span>
-                                    </button>
-                                  ))}
-                                </div>
-                                <FormMessage />
-                              </FormItem>
-                            )} />
-                            <FormField control={form.control} name="branch" render={({ field: f }) => (
-                              <FormItem>
-                                <FormLabel className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Branch</FormLabel>
-                                {course ? (
-                                  <div className="flex flex-wrap gap-2 mt-2" data-testid="select-branch">
-                                    {COURSES[course].branches.map((b) => (
-                                      <button type="button" key={b} onClick={() => { f.onChange(b); form.clearErrors("branch"); }} className={`rounded-full px-4 py-2 text-sm border transition-colors ${f.value === b ? "bg-[hsl(var(--ink))] text-white border-transparent" : "border-[hsl(var(--ink)/0.15)] hover:bg-[hsl(var(--ink)/0.05)]"}`} data-testid={`option-branch-${b.replace(/\W+/g, "-").toLowerCase()}`}>{b}</button>
-                                    ))}
-                                  </div>
-                                ) : <p className="text-sm text-muted-foreground mt-2">Choose a course first.</p>}
-                                <FormMessage />
-                              </FormItem>
-                            )} />
-                          </>
-                        )}
-                        {step === 1 && (<><div className="font-display text-2xl">Who is applying?</div>{field("studentName", "Student name", "Full name")}{field("fatherName", "Father's name")}{field("phone", "Mobile number", "10-digit mobile", "tel")}</>)}
-                        {step === 2 && (<><div className="font-display text-2xl">Recent marks</div>{field("tenthMarks", "10th marks / GPA", "e.g. 9.2 or 512")}{field("interMarks", "Inter marks (if applicable)", "Optional")}</>)}
-                        {step === 3 && (
-                          <>
-                            <div className="font-display text-2xl">Where should we reach you?</div>
-                            <div className="grid sm:grid-cols-3 gap-4">{field("village", "Village / Town")}{field("mandal", "Mandal")}{field("district", "District")}</div>
-                            <FormField control={form.control} name="address" render={({ field: f }) => (
-                              <FormItem><FormLabel className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Address</FormLabel><FormControl><Textarea rows={3} {...f} className="rounded-2xl bg-background border-[hsl(var(--ink)/0.15)] text-lg px-5 py-4" data-testid="input-address" /></FormControl><FormMessage /></FormItem>
-                            )} />
-                            <div className="rounded-2xl bg-[hsl(var(--ink)/0.04)] p-4 text-sm"><span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground block mb-1">Enquiring for</span>{course} / {branch}</div>
-                          </>
-                        )}
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-                  <div className="mt-8 pt-6 border-t border-[hsl(var(--ink)/0.1)] flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
-                    <p className="text-xs text-muted-foreground max-w-xs">Your details go to the admissions office only for follow-up. Submitting does not confirm admission.</p>
+                  <Reveal key={step} className="flex-1 mt-8 space-y-5">
+                    {step === 0 && (
+                      <>
+                        <FormField control={form.control} name="course" render={({ field: f }) => (
+                          <FormItem>
+                            <FormLabel className="text-[13px] font-semibold">Course<span className="text-[hsl(var(--accent))]"> *</span></FormLabel>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="radiogroup">
+                              {Object.entries(COURSES).map(([k, v]) => (
+                                <button type="button" role="radio" aria-checked={f.value === k} key={k} onClick={() => { f.onChange(k); form.setValue("branch", v.branches.length === 1 ? v.branches[0] : ""); form.clearErrors("course"); }}
+                                  className={`text-left rounded-sm border p-3.5 transition-colors ${f.value === k ? "border-primary bg-secondary ring-1 ring-primary" : "hover:border-[hsl(var(--primary)/0.4)]"}`} data-testid={`option-course-${k}`}>
+                                  <span className="block font-semibold">{k}</span><span className="block text-[12px] text-muted-foreground">{v.college}</span>
+                                </button>
+                              ))}
+                            </div>
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                        <FormField control={form.control} name="branch" render={({ field: f }) => (
+                          <FormItem>
+                            <FormLabel className="text-[13px] font-semibold">Branch / Specialisation<span className="text-[hsl(var(--accent))]"> *</span></FormLabel>
+                            {course ? (
+                              <div className="flex flex-wrap gap-2" data-testid="select-branch" role="radiogroup">
+                                {COURSES[course].branches.map((b) => (
+                                  <button type="button" role="radio" aria-checked={f.value === b} key={b} onClick={() => { f.onChange(b); form.clearErrors("branch"); }} className={`rounded-sm px-3 py-2 text-[13px] border transition-colors ${f.value === b ? "bg-primary text-primary-foreground border-primary" : "hover:bg-secondary"}`} data-testid={`option-branch-${b.replace(/\W+/g, "-").toLowerCase()}`}>{b}</button>
+                                ))}
+                              </div>
+                            ) : <p className="text-[14px] text-muted-foreground">Select a course first.</p>}
+                            <FormMessage />
+                          </FormItem>
+                        )} />
+                      </>
+                    )}
+                    {step === 1 && <div className="grid sm:grid-cols-2 gap-5">{field("studentName", "Student name", "Full name as per certificates")}{field("fatherName", "Father's name")}{field("phone", "Mobile number", "10-digit mobile number", "tel")}</div>}
+                    {step === 2 && <div className="grid sm:grid-cols-2 gap-5">{field("tenthMarks", "SSC / 10th marks or GPA", "e.g. 9.2 or 512")}{field("interMarks", "Intermediate marks (if applicable)", "Optional", "text", false)}</div>}
+                    {step === 3 && (
+                      <>
+                        <div className="grid sm:grid-cols-3 gap-5">{field("village", "Village / Town")}{field("mandal", "Mandal")}{field("district", "District")}</div>
+                        <FormField control={form.control} name="address" render={({ field: f }) => (
+                          <FormItem><FormLabel className="text-[13px] font-semibold">Address<span className="text-[hsl(var(--accent))]"> *</span></FormLabel><FormControl><Textarea rows={3} {...f} className="rounded-sm bg-background" data-testid="input-address" /></FormControl><FormMessage /></FormItem>
+                        )} />
+                        <div className="rounded-sm bg-secondary px-4 py-3 text-[14px]"><span className="text-muted-foreground">Enquiring for: </span><span className="font-semibold">{course} / {branch}</span></div>
+                      </>
+                    )}
+                  </Reveal>
+                  <div className="mt-8 pt-5 border-t flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-4">
+                    <p className="text-[12px] text-muted-foreground max-w-xs">Details are used only for admission follow-up. Submission does not confirm admission.</p>
                     <div className="flex gap-2">
-                      {step > 0 && <button type="button" onClick={back} className="w-14 h-14 rounded-full border border-[hsl(var(--ink)/0.2)] grid place-items-center" aria-label="Previous step" data-testid="button-prev-step"><ArrowLeft className="w-5 h-5" /></button>}
+                      {step > 0 && <button type="button" onClick={back} className="h-11 px-4 rounded-sm border inline-flex items-center gap-1.5 font-medium" data-testid="button-prev-step"><ArrowLeft className="w-4 h-4" />Back</button>}
                       {step < 3 ? (
-                        <button type="button" onClick={next} className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--ink))] text-white font-semibold px-8 h-14" data-testid="button-next-step">Continue <ArrowRight className="w-4 h-4" /></button>
+                        <button type="button" onClick={next} className="h-11 px-6 rounded-sm bg-primary text-primary-foreground font-semibold inline-flex items-center gap-1.5" data-testid="button-next-step">Continue <ArrowRight className="w-4 h-4" /></button>
                       ) : (
-                        <button type="submit" className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--lime))] text-[hsl(var(--ink))] font-semibold px-8 h-14" data-testid="button-submit-enquiry">Submit enquiry <Check className="w-4 h-4" /></button>
+                        <button type="submit" className="h-11 px-6 rounded-sm bg-[hsl(var(--accent))] text-white font-semibold inline-flex items-center gap-1.5" data-testid="button-submit-enquiry">Submit enquiry <Check className="w-4 h-4" /></button>
                       )}
                     </div>
                   </div>
@@ -207,23 +205,7 @@ export default function Admissions() {
             )}
           </div>
         </div>
-      </section>
-
-      <section className="max-w-7xl mx-auto px-6 mt-28">
-        <SectionHead eyebrow="Programs offered" title="Find your program." />
-        <div className="grid md:grid-cols-3 gap-3">
-          {(["Pharmacy", "Engineering", "Polytechnic"] as const).map((c, ci) => (
-            <Reveal key={c} delay={ci * 0.08}>
-              <div className="h-full rounded-[1.75rem] bg-card border p-7" data-testid={`card-college-${c.toLowerCase()}`}>
-                <div className="flex items-center gap-3"><span className="w-3 h-3 rounded-full" style={{ background: `hsl(${["var(--pharm)", "var(--eng)", "var(--poly)"][ci]})` }} /><span className="font-display text-3xl">{c}</span></div>
-                {Object.entries(COURSES).filter(([, v]) => v.college === c).map(([k, v]) => (
-                  <div key={k} className="mt-5 pt-5 border-t border-[hsl(var(--ink)/0.1)]"><div className="font-mono text-xs uppercase tracking-[0.15em]">{k}</div><div className="text-sm text-muted-foreground mt-1.5">{v.branches.join(", ")}</div></div>
-                ))}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      </Container>
     </>
   );
 }
