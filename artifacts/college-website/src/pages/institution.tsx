@@ -9,9 +9,9 @@ import { IMG } from "@/data/images";
 const ENG_MISSION = ["Provide innovative and immersive educational experiences.", "Advance research and development through modern laboratories.", "Nurture entrepreneurial spirit, creativity and innovation.", "Promote environmental sustainability and social responsibility through ethical and emotional education."];
 
 const WING: Record<Institution["key"], { accent: string; hero: string; img2: string; label: string }> = {
-  pharmacy: { accent: "9 76% 46%", hero: IMG.pharmacyEvent, img2: IMG.libraryPharmacy, label: "Pharmaceutical sciences" },
-  engineering: { accent: "174 64% 30%", hero: IMG.campusAerial, img2: IMG.labPresentation, label: "Engineering and technology" },
-  polytechnic: { accent: "38 90% 46%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
+  pharmacy: { accent: "200 72% 31%", hero: IMG.pharmacyEvent, img2: IMG.libraryPharmacy, label: "Pharmaceutical sciences" },
+  engineering: { accent: "162 48% 24%", hero: IMG.campusAerial, img2: IMG.labPresentation, label: "Engineering and technology" },
+  polytechnic: { accent: "222 38% 34%", hero: IMG.labSurvey, img2: IMG.labSession, label: "Diploma in engineering" },
 };
 
 function InstitutionPage({ ins }: { ins: Institution }) {

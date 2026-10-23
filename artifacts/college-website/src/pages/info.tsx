@@ -38,7 +38,7 @@ export function About() {
 
       <Container className="mt-20 grid md:grid-cols-2 gap-6">
         <div className="rounded-lg bg-[hsl(var(--teal))] text-white p-8">
-          <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(14_70%_78%)]">Vision</div>
+          <div className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--brass))]">Vision</div>
           <p className="font-display text-xl md:text-2xl mt-4 leading-snug">To cultivate engineers into global leaders equipped with unwavering psychological resilience, profound emotional intelligence, and unwavering ethical integrity.</p>
         </div>
         <div className="rounded-lg border bg-card p-8">
