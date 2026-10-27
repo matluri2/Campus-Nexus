@@ -14,3 +14,17 @@ mtime_ms = 1793017859914
 storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:ec615bdc-30b5-4af0-bec6-bf7c78dfb97b/9d7c2c2e-dbd3-4f07-9f7a-26f65734d9b1/16561e00-f055-4b98-9364-ad30618acd0e"
 storage_version_token = "1793103166326457"
 content_type = "application/octet-stream"
+
+[[outputs]]
+id = "BBIx1rB7Ph6vIrOJljPjl"
+uri = "file://generated-artifacts/amr-website-js.zip"
+type = "unspecified"
+title = "AMR website code — JavaScript version"
+description = "Standalone JavaScript/JSX package with the same UI and behavior. Tested with a clean npm install and production build. Unzip and follow README.md."
+logical_id = "39c95dbe-f48e-4578-8bf9-e8c99a20dd76"
+content_hash = "sha256:091a7ae26cb071ea749c2563b360becb291fc2a76bbffdf645a30e438371ace5"
+size = 5790551
+mtime_ms = 1793103505464
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:ec615bdc-30b5-4af0-bec6-bf7c78dfb97b/39c95dbe-f48e-4578-8bf9-e8c99a20dd76/2e5b2c09-3a82-4879-9cf7-e4ba48529651"
+storage_version_token = "1793103515355589"
+content_type = "application/octet-stream"
