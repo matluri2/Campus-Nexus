@@ -38,9 +38,6 @@ export const MENU: NavGroup[] = [
   ] },
   { label: "Academics", href: "/admissions#programmes", items: [
     { label: "Programmes", href: "/admissions#programmes", desc: "B.Tech, M.Tech, B.Pharm, Pharm.D, M.Pharm, Diploma" },
-    { label: "Research and Development", href: "/research", desc: "R&D cell and central facilities" },
-    { label: "Incubation Centre", href: "/research#incubation", desc: "Ideathons, hackathons, start-ups" },
-    { label: "Library", href: "/research#facilities" },
     { label: "IQAC", href: "/committees#iqac", desc: "Internal Quality Assurance Cell" },
   ] },
   { label: "Admissions", href: "/admissions", items: [
@@ -49,12 +46,20 @@ export const MENU: NavGroup[] = [
     { label: "Eligibility and Fee", href: "/admissions#fee" },
     { label: "Admission Enquiry", href: "/admissions#enquire", desc: "Request a call from the admissions office" },
   ] },
-  { label: "Campus Life", href: "/student-life", feature: { img: IMG.sports1, title: "Sports, NSS, festivals and hostels", href: "/student-life" }, items: [
-    { label: "Facilities and Hostels", href: "/student-life", desc: "Hostels, transport, health, sports" },
+  { label: "Student Life", href: "/student-life", feature: { img: IMG.sports1, title: "Sports, NSS, festivals and hostels", href: "/student-life" }, items: [
+    { label: "Student Life overview", href: "/student-life", desc: "A guide to life on campus" },
+    { label: "Hostels and Facilities", href: "/student-life#hostels", desc: "Hostels, transport, health and sports" },
     { label: "Training and Placements", href: "/student-life#placements" },
     { label: "Alumni", href: "/student-life#alumni" },
+    { label: "Sports and NSS", href: "/student-life#sports" },
     { label: "Committees and Cells", href: "/committees", desc: "Anti-ragging, ICC, SGRC and more" },
     { label: "Picture Gallery", href: "/gallery" },
+  ] },
+  { label: "Research", href: "/research", feature: { img: IMG.labPresentation, title: "Research, laboratories and incubation", href: "/research" }, items: [
+    { label: "Research and Development", href: "/research", desc: "R&D cell and research activities" },
+    { label: "Incubation Centre", href: "/research#incubation", desc: "Ideathons, hackathons and start-ups" },
+    { label: "Laboratories and Library", href: "/research#facilities", desc: "Central learning and research facilities" },
+    { label: "IQAC", href: "/committees#iqac", desc: "Internal Quality Assurance Cell" },
   ] },
   { label: "Information", href: "/notices", items: [
     { label: "Notices and Circulars", href: "/notices#notices" },
@@ -120,9 +125,10 @@ function Brand({ light }: { light?: boolean }) {
 const OWNS: Record<string, string[]> = {
   About: ["/about", "/administration"],
   Institutions: ["/pharmacy", "/engineering", "/polytechnic"],
-  Academics: ["/research"],
+  Academics: ["/admissions"],
   Admissions: ["/admissions"],
-  "Campus Life": ["/student-life", "/campus-life", "/committees", "/gallery"],
+  "Student Life": ["/student-life", "/campus-life", "/committees", "/gallery"],
+  Research: ["/research"],
   Information: ["/notices", "/disclosure"],
 };
 function DesktopNav({ light }: { light?: boolean }) {
@@ -140,7 +146,7 @@ function DesktopNav({ light }: { light?: boolean }) {
           const isOpen = open === m.label;
           return (
             <li key={m.label} className="h-full flex items-center" onMouseEnter={() => enter(m.label)} onMouseLeave={leave}>
-              <button onClick={() => setOpen(isOpen ? null : m.label)} aria-expanded={isOpen} className={`relative h-full px-3.5 inline-flex items-center gap-1 text-[14px] font-semibold whitespace-nowrap transition-colors ${light ? (active || isOpen ? "text-white" : "text-white/85 hover:text-white") : active || isOpen ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid={`button-nav-${slug(m.label)}`}>
+              <button onClick={() => setOpen(isOpen ? null : m.label)} aria-expanded={isOpen} className={`relative h-full px-2.5 inline-flex items-center gap-1 text-[13.5px] font-semibold whitespace-nowrap transition-colors ${light ? (active || isOpen ? "text-white" : "text-white/85 hover:text-white") : active || isOpen ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid={`button-nav-${slug(m.label)}`}>
                 {m.label}<ChevronDown className={`w-3.5 h-3.5 opacity-60 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                 <span aria-hidden className={`absolute left-3.5 right-3.5 bottom-0 h-[2px] bg-[hsl(var(--lagoon))] origin-left transition-transform duration-300 ${active || isOpen ? "scale-x-100" : "scale-x-0"}`} />
               </button>
@@ -179,7 +185,7 @@ function DesktopNav({ light }: { light?: boolean }) {
             </li>
           );
         })}
-        <li className="h-full flex items-center"><Link href="/contact" className={`h-full px-3.5 inline-flex items-center text-[14px] font-semibold ${light ? "text-white/85 hover:text-white" : loc === "/contact" ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid="link-nav-contact">Contact</Link></li>
+        <li className="h-full flex items-center"><Link href="/contact" className={`h-full px-2.5 inline-flex items-center text-[13.5px] font-semibold ${light ? "text-white/85 hover:text-white" : loc === "/contact" ? "text-[hsl(var(--pine))]" : "text-foreground/75 hover:text-[hsl(var(--pine))]"}`} data-testid="link-nav-contact">Contact</Link></li>
       </ul>
     </nav>
   );
@@ -322,7 +328,7 @@ function Footer() {
           </address>
         </div>
         <FootCol title="Institutions" links={[["College of Pharmacy", "/pharmacy"], ["College of Engineering", "/engineering"], ["Polytechnic", "/polytechnic"], ["About Us", "/about"], ["Administration", "/administration"], ["Research", "/research"]]} />
-        <FootCol title="Students" links={[["Admissions", "/admissions"], ["Admission Enquiry", "/admissions#enquire"], ["Campus Life", "/student-life"], ["Placements", "/student-life#placements"], ["Alumni", "/student-life#alumni"], ["Picture Gallery", "/gallery"], ["Notices", "/notices"], ["Contact Us", "/contact"]]} />
+        <FootCol title="Students" links={[["Admissions", "/admissions"], ["Admission Enquiry", "/admissions#enquire"], ["Student Life", "/student-life"], ["Placements", "/student-life#placements"], ["Alumni", "/student-life#alumni"], ["Picture Gallery", "/gallery"], ["Notices", "/notices"], ["Contact Us", "/contact"]]} />
         <FootCol title="Statutory" links={[["UGC Public Self-Disclosure", "/disclosure"], ["Anti-Ragging Cell", "/committees#anti-ragging"], ["Internal Complaints Committee", "/committees#icc"], ["Grievance Redressal (SGRC)", "/committees#sgrc"], ["General Grievance Cell", "/committees#grievance"], ["Right to Information", "/notices#rti"]]} />
       </div>
       <div className="border-t border-white/10">

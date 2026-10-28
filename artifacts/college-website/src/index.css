@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -79,70 +79,70 @@
   --elevate-1: rgba(0, 0, 0, 0.03);
   --elevate-2: rgba(0, 0, 0, 0.08);
 
-  --background: 44 30% 97%;
+  --background: 198 28% 97%;
 
-  --foreground: 165 30% 11%;
+  --foreground: 202 34% 14%;
 
-  --border: 40 14% 85%;
+  --border: 198 16% 86%;
 
-  --card: 44 40% 99%;
+  --card: 198 30% 99%;
 
-  --card-foreground: 165 30% 11%;
+  --card-foreground: 202 34% 14%;
 
-  --card-border: 40 14% 86%;
+  --card-border: 198 16% 86%;
 
-  --sidebar: 160 22% 94%;
+  --sidebar: 193 22% 94%;
 
-  --sidebar-foreground: 190 38% 12%;
+  --sidebar-foreground: 202 34% 14%;
 
-  --sidebar-border: 168 16% 86%;
+  --sidebar-border: 193 18% 86%;
 
-  --sidebar-primary: 174 64% 21%;
+  --sidebar-primary: 190 56% 27%;
 
-  --sidebar-primary-foreground: 150 30% 98%;
+  --sidebar-primary-foreground: 198 30% 98%;
 
-  --sidebar-accent: 166 30% 90%;
+  --sidebar-accent: 186 30% 90%;
 
-  --sidebar-accent-foreground: 174 64% 21%;
+  --sidebar-accent-foreground: 190 56% 27%;
 
-  --sidebar-ring: 9 80% 50%;
+  --sidebar-ring: 184 62% 36%;
 
-  --popover: 44 40% 99%;
+  --popover: 198 30% 99%;
 
-  --popover-foreground: 165 30% 11%;
+  --popover-foreground: 202 34% 14%;
 
-  --popover-border: 168 16% 86%;
+  --popover-border: 193 18% 86%;
 
-  --primary: 162 48% 18%;
+  --primary: 190 56% 27%;
 
-  --primary-foreground: 150 30% 98%;
+  --primary-foreground: 198 30% 98%;
 
-  --secondary: 150 18% 92%;
+  --secondary: 186 25% 92%;
 
-  --secondary-foreground: 162 48% 18%;
+  --secondary-foreground: 190 56% 27%;
 
-  --muted: 42 20% 93%;
+  --muted: 195 18% 93%;
 
-  --muted-foreground: 160 8% 34%;
+  --muted-foreground: 198 12% 37%;
 
-  --accent: 200 72% 31%;
+  --accent: 184 62% 36%;
 
-  --accent-foreground: 150 30% 98%;
+  --accent-foreground: 198 30% 98%;
 
   --destructive: 4 70% 46%;
 
   --destructive-foreground: 0 0% 100%;
 
-  --input: 40 12% 74%;
-  --ring: 200 72% 38%;
-  --chart-1: 174 64% 21%;
-  --chart-2: 9 80% 52%;
-  --chart-3: 200 60% 40%;
-  --chart-4: 160 40% 38%;
-  --chart-5: 260 25% 50%;
+  --input: 195 14% 74%;
+  --ring: 184 62% 36%;
+  --chart-1: 190 56% 27%;
+  --chart-2: 184 62% 36%;
+  --chart-3: 207 54% 46%;
+  --chart-4: 164 38% 42%;
+  --chart-5: 220 24% 54%;
 
-  --app-font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --app-font-serif: 'Fraunces', Georgia, system-ui, sans-serif;
+  --app-font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --app-font-serif: 'Manrope', system-ui, sans-serif;
   --app-font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --radius: 0.25rem; /* 8px */
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0); /*replace with H S L */
@@ -438,10 +438,10 @@
 
 
 
-:root{--teal:162 48% 18%;--teal-deep:164 52% 11%;--ink:165 34% 10%;--saffron:200 72% 31%;--terra:200 72% 31%;--brass:188 55% 78%;--sand:42 24% 91%;--wing:200 72% 31%;--mint:150 30% 85%;--paper:44 30% 97%;--pine:162 48% 18%;--lagoon:200 72% 31%}
+:root{--teal:190 56% 27%;--teal-deep:198 46% 12%;--ink:202 35% 11%;--saffron:184 62% 36%;--terra:184 62% 36%;--brass:180 43% 82%;--sand:198 22% 92%;--wing:184 62% 36%;--mint:178 35% 88%;--paper:198 28% 97%;--pine:190 56% 27%;--lagoon:184 62% 36%}
 html{scroll-behavior:smooth}
 body{font-size:15px;line-height:1.65;background:hsl(var(--paper));font-feature-settings:"ss01"}
-h1,h2,h3,.font-display{font-family:var(--app-font-serif);font-weight:500;letter-spacing:-0.012em;font-variation-settings:"opsz" 60}
+h1,h2,h3,.font-display{font-family:var(--app-font-serif);font-weight:600;letter-spacing:-0.025em}
 .font-mono{font-family:var(--app-font-sans);font-variant-numeric:tabular-nums;letter-spacing:.01em}
 ::selection{background:hsl(var(--lagoon));color:hsl(var(--paper))}
 :focus-visible{outline:2px solid hsl(var(--lagoon));outline-offset:3px}
@@ -461,7 +461,7 @@ main table thead{background:hsl(var(--sand))}
 main table thead th{font-weight:700;letter-spacing:.08em;font-size:11px;text-transform:uppercase;color:hsl(var(--pine))}
 main table tbody tr{transition:background-color .2s}
 main table tbody tr:hover{background:hsl(var(--secondary)/.5)}
-.num-display{font-family:var(--app-font-serif);font-weight:500;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums}
+.num-display{font-family:var(--app-font-serif);font-weight:600;letter-spacing:-0.02em;line-height:1;font-variant-numeric:tabular-nums}
 .no-scrollbar{scrollbar-width:none}.no-scrollbar::-webkit-scrollbar{display:none}
 .cut-corner{}
 .rule{height:1px;background:hsl(var(--border))}
