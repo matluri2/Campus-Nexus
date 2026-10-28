@@ -75,7 +75,7 @@ export const ACCREDITATION_LOGOS: { src: string; alt: string }[] = [
  */
 export type HeroSlide = { img: string; video?: string; caption: string; sub: string; cta: { label: string; href: string } };
 export const HERO_SLIDES: HeroSlide[] = [
-  { img: IMG.campusAerial, caption: "One campus. Three institutions.", sub: "Pharmacy, engineering and diploma education at Petlurivaripalem, Narasaraopet.", cta: { label: "Admissions 2026", href: "/admissions" } },
+  { img: IMG.campusAerial, caption: "One campus. Three institutions.", sub: "Pharmacy, engineering and diploma education at Petlurivaripalem, Narasaraopet.", cta: { label: "About A.M. Reddy", href: "/about" } },
   { img: IMG.labPresentation, caption: "Learning by doing.", sub: "Laboratories, incubation and hands-on projects.", cta: { label: "College of Engineering", href: "/engineering" } },
   { img: IMG.pharmacyEvent, caption: "Pharmaceutical sciences since 2004.", sub: "A.M. Reddy Memorial College of Pharmacy.", cta: { label: "College of Pharmacy", href: "/pharmacy" } },
   { img: IMG.sankranthi, caption: "A campus that celebrates together.", sub: "Festivals, sports and NSS outreach.", cta: { label: "Campus life", href: "/student-life" } },

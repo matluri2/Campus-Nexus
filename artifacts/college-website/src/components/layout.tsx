@@ -112,10 +112,10 @@ function SearchDialog({ open, setOpen }: { open: boolean; setOpen: (b: boolean) 
 function Brand({ light }: { light?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-3 min-w-0 shrink-0" data-testid="link-logo" aria-label={`${INST_NAME}, home`}>
-      <img src={asset("brand/amr-logo.png")} alt="" className="w-10 h-10 shrink-0 rounded-full bg-white p-0.5" />
+      <img src={asset("brand/amr-logo.png")} alt="" className="w-12 h-12 shrink-0 rounded-full bg-white p-0.5" />
       <span className="leading-[1.15] min-w-0">
-        <span className={`block font-display text-[17px] ${light ? "text-white" : "text-[hsl(var(--pine))]"}`}>A.M. Reddy</span>
-        <span className={`block text-[10.5px] font-semibold uppercase tracking-[0.16em] ${light ? "text-white/60" : "text-muted-foreground"}`}>Educational Institutions</span>
+        <span className={`block font-display text-[18px] ${light ? "text-white" : "text-[hsl(var(--pine))]"}`}>A.M. Reddy</span>
+        <span className={`hidden sm:block text-[14px] font-semibold uppercase tracking-[0.13em] ${light ? "text-white/75" : "text-muted-foreground"}`}>Educational Institutions</span>
       </span>
     </Link>
   );

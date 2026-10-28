@@ -14,6 +14,7 @@ description: Owner's stated visual and compliance expectations for the AMR colle
 - Only the chairperson appears on the home page; other leaders, principals and HoDs go on inner pages.
 - The site must follow the UGC Guidelines on Public Self-Disclosure by HEIs (2024). That means a site-wide search, no login walls, and a /disclosure page covering sections a–j.
 - Use only a minimal set of real photos, because the owner will edit them later. All photo paths are kept in one named-slot file.
+- Institutional brand colors are navy blue and light gold; use navy for readable text and controls, and light gold as an accent.
 
-**Why:** the user said so after each rejected version.
-**How to apply:** keep the style professional and institutional but distinctive, not a generic Indian-university template. No gimmicky or playful styling. Unknown statutory details show "To be published"; never invent them.
+**Why:** the user rejected earlier visual directions and stated navy blue and light gold are the college colors.
+**How to apply:** keep the style professional and institutional but distinctive, use navy/light gold with accessible contrast, and avoid gimmicky styling. Unknown statutory details show "To be published"; never invent them.

@@ -182,7 +182,7 @@ function Story() {
       <Container className="py-16 md:py-0">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
           <div className="lg:sticky lg:top-0 lg:h-[100svh] flex flex-col justify-center lg:py-20">
-            <p className="eyebrow eyebrow-light">The campus</p>
+            <p className="eyebrow eyebrow-light">About A.M. Reddy</p>
             <h2 className="font-display text-[28px] md:text-[36px] leading-[1.15] mt-3">Built up, step by step, on 10.94 acres at Petlurivaripalem.</h2>
             <div className="relative mt-8">
               <Parallax src={IMG.campusLawns} alt="Academic blocks and lawns of the campus" amount={40} className="aspect-[4/3] shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]" />
@@ -191,7 +191,7 @@ function Story() {
           </div>
           <ol className="lg:py-[24vh] space-y-14 lg:space-y-[28vh]">
             {CHAPTERS.map((c) => (
-              <motion.li key={c.y} initial={reduce ? false : { opacity: 0.35, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ amount: 0.6 }} transition={{ duration: 0.6, ease: EASE }} className="max-w-md">
+              <motion.li key={c.y} initial={reduce ? false : { y: 24 }} whileInView={{ y: 0 }} viewport={{ amount: 0.6 }} transition={{ duration: 0.6, ease: EASE }} className="max-w-md">
                 <span className="num-display text-[52px] md:text-[64px] text-[hsl(var(--brass))]">{c.y}</span>
                 <h3 className="font-display text-[22px] mt-3">{c.t}</h3>
                 <p className="text-[15px] text-white/75 mt-2 leading-relaxed">{c.d}</p>
@@ -311,5 +311,5 @@ function CTA() {
 }
 
 export default function Home() {
-  return (<><HeroSlideshow /><NewsBand /><Colleges /><Story /><Chairperson /><CampusLife /><Placements /><CTA /></>);
+  return (<><HeroSlideshow /><NewsBand /><Story /><Colleges /><Chairperson /><CampusLife /><Placements /><CTA /></>);
 }
