@@ -1,1 +1,2 @@
 - [Design direction](design-direction.md) — must look professional/institutional (not old maroon, not playful) and follow UGC 2024 self-disclosure guidelines.
+- [JavaScript source deliverables](javascript-source.md) — standalone website code must use plain `.js` files without JSX or TypeScript.

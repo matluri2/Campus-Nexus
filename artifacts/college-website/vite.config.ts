@@ -1,7 +1,7 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 
@@ -27,12 +27,31 @@ if (!basePath) {
   );
 }
 
+const jsPreviewHistoryFallback: Plugin = {
+  name: 'js-preview-history-fallback',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use((request, _response, next) => {
+      const requestUrl = request.url ?? '/';
+      const [pathname, query = ''] = requestUrl.split('?');
+      if (
+        (pathname === '/js-preview' || pathname.startsWith('/js-preview/')) &&
+        !path.extname(pathname)
+      ) {
+        request.url = `/js-preview/index.html${query ? `?${query}` : ''}`;
+      }
+      next();
+    });
+  },
+};
+
 export default defineConfig({
   base: basePath,
   plugins: [
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
+    jsPreviewHistoryFallback,
     ...(process.env.NODE_ENV !== 'production' &&
     process.env.REPL_ID !== undefined
       ? [
